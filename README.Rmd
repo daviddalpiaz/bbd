@@ -16,14 +16,16 @@ knitr::opts_chunk$set(
 # bbd
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/daviddalpiaz/bbd/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/daviddalpiaz/bbd/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/daviddalpiaz/bbd/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/daviddalpiaz/bbd/actions)
 <!-- badges: end -->
 
-The goal of bbd is to ...
+The `bbd` package contains functions that facilitating collecting baseball data from various sources online. **This packages is currently experimental.** All function interfaces are liable to change.
+
+For a mature and feature rich baseball data package, consider [`baseballr`](https://github.com/BillPetti/baseballr).
 
 ## Installation
 
-You can install the development version of bbd from [GitHub](https://github.com/) with:
+You can install the development version of `bbd` from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
@@ -32,17 +34,17 @@ devtools::install_github("daviddalpiaz/bbd")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+```{r, echo = FALSE}
+options("datatable.print.topn" = 5)
+options("datatable.print.nrows" = 10)
+options("datatable.print.class" = TRUE)
+options("datatable.print.trunc.cols" = TRUE)
+options("datatable.print.keys" = TRUE)
+```
+
+The most basic usage of **`bbd`** is collecting [statcast data](https://baseballsavant.mlb.com/statcast_search) for all games played on a particular day.
 
 ```{r example}
 library(bbd)
-## basic example code
+get_statcast_day(date = "2021-11-02")[, 1:5]
 ```
-
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/v1/examples>.
