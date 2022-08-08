@@ -12,7 +12,3 @@ check_nonempty_df = function(x) {
   stopifnot(is.data.frame(x))
   return(nrow(x) != 0)
 }
-
-
-
-
