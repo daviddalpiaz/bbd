@@ -1,0 +1,16 @@
+Package: bbd
+Title: BaseBall Data
+Version: 0.0.0.9000
+Authors@R: 
+    person("David", "Dalpiaz", , "dalpiaz2@illinois.edu", role = c("aut", "cre"))
+Description: Functoions to quickly obtain and process baseball data.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.1
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Imports: 
+    data.table
+URL: https://daviddalpiaz.github.io/bbd/
