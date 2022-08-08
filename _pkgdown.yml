@@ -1,5 +1,6 @@
-home:
-  strip_header: true
 url: https://daviddalpiaz.github.io/bbd/
 template:
   bootstrap: 5
+authors:
+  David Dalpiaz:
+    href: https://daviddalpiaz.org
