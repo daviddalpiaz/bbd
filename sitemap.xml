@@ -16,15 +16,21 @@
     <loc>https://daviddalpiaz.github.io/bbd/index.html</loc>
   </url>
   <url>
-    <loc>https://daviddalpiaz.github.io/bbd/reference/check_nonempty_df.html</loc>
-  </url>
-  <url>
-    <loc>https://daviddalpiaz.github.io/bbd/reference/get_statcast.html</loc>
-  </url>
-  <url>
-    <loc>https://daviddalpiaz.github.io/bbd/reference/get_statcast_day.html</loc>
+    <loc>https://daviddalpiaz.github.io/bbd/reference/all_na.html</loc>
   </url>
   <url>
     <loc>https://daviddalpiaz.github.io/bbd/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>https://daviddalpiaz.github.io/bbd/reference/nonempty_df.html</loc>
+  </url>
+  <url>
+    <loc>https://daviddalpiaz.github.io/bbd/reference/statcast.html</loc>
+  </url>
+  <url>
+    <loc>https://daviddalpiaz.github.io/bbd/reference/statcast_day.html</loc>
+  </url>
+  <url>
+    <loc>https://daviddalpiaz.github.io/bbd/reference/statcast_min_process.html</loc>
   </url>
 </urlset>

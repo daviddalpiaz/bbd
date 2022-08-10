@@ -2,7 +2,7 @@ pandoc: 2.14.2
 pkgdown: 2.0.6
 pkgdown_sha: ~
 articles: {}
-last_built: 2022-08-08T22:57Z
+last_built: 2022-08-10T03:48Z
 urls:
   reference: https://daviddalpiaz.github.io/bbd/reference
   article: https://daviddalpiaz.github.io/bbd/articles
