@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/daviddalpiaz/bbd/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/daviddalpiaz/bbd/actions)
 <!-- badges: end -->
 
-The `bbd` package contains functions that facilitating collecting baseball data from various sources online. **This packages is currently experimental.** All function interfaces are liable to change.
+The `bbd` package contains functions that facilitate the collection of baseball data from various sources online. **This packages is currently experimental.** All function interfaces are liable to change.
 
 For a mature and feature rich baseball data package, consider [`baseballr`](https://github.com/BillPetti/baseballr).
 
@@ -34,17 +34,9 @@ devtools::install_github("daviddalpiaz/bbd")
 
 ## Example
 
-```{r, echo = FALSE}
-options("datatable.print.topn" = 5)
-options("datatable.print.nrows" = 10)
-options("datatable.print.class" = TRUE)
-options("datatable.print.trunc.cols" = TRUE)
-options("datatable.print.keys" = TRUE)
-```
-
-The most basic usage of **`bbd`** is collecting [statcast data](https://baseballsavant.mlb.com/statcast_search) for all games played on a particular day.
+The most basic usage of **`bbd`** is collecting [statcast data](https://baseballsavant.mlb.com/statcast_search) for all games played between two dates, inclusive.
 
 ```{r example}
 library(bbd)
-get_statcast_day(date = "2021-11-02")[, 1:5]
+statcast(start = "2021-10-26", end = "2021-11-02")[, c(1, 3, 4, 5, 8)]
 ```
