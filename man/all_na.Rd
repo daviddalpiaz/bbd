@@ -15,7 +15,3 @@ A logical vector
 \description{
 Check if each element of a vector is NA
 }
-\examples{
-all_na(c(1, NA, 3))
-all_na(c(NA, NA, NA, NA))
-}

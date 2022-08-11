@@ -15,7 +15,3 @@ A logical vector
 \description{
 Check for non-empty data frame
 }
-\examples{
-nonempty_df(data.frame())
-nonempty_df(data.frame(1))
-}
