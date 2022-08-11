@@ -34,7 +34,7 @@ devtools::install_github("daviddalpiaz/bbd")
 
 ## Example
 
-The most basic usage of **`bbd`** is collecting [statcast data](https://baseballsavant.mlb.com/statcast_search) for all games played between two dates, inclusive.
+The most basic usage of `bbd` is collecting [statcast data](https://baseballsavant.mlb.com/statcast_search) for all games played between two dates, inclusive.
 
 ```{r example}
 library(bbd)

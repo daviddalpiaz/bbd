@@ -27,7 +27,7 @@ devtools::install_github("daviddalpiaz/bbd")
 
 ## Example
 
-The most basic usage of **`bbd`** is collecting [statcast
+The most basic usage of `bbd` is collecting [statcast
 data](https://baseballsavant.mlb.com/statcast_search) for all games
 played between two dates, inclusive.
 
@@ -45,8 +45,8 @@ statcast(start = "2021-10-26", end = "2021-11-02")[, c(1, 3, 4, 5, 8)]
 #>  6 SI                  94.2          1.11          6.09  664285
 #>  7 SI                  95.9          1.06          6.08  664285
 #>  8 CU                  77            1.28          5.95  664285
-#>  9 CU                  81.9          0.98          5.96  664285
-#> 10 CU                  80.1         -1.95          5.4   450203
+#>  9 CU                  80.1         -1.95          5.4   450203
+#> 10 CU                  81.9          0.98          5.96  664285
 #> # … with 1,716 more rows
 #> # ℹ Use `print(n = ...)` to see more rows
 ```
