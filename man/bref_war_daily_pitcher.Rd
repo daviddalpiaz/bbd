@@ -16,3 +16,8 @@ A \code{data.frame} or \code{tibble} containing pitcher WAR data.
 \description{
 Download daily updated WAR data for pitchers from Baseball-Reference
 }
+\examples{
+\dontrun{
+bref_war_daily_pitcher()
+}
+}
