@@ -9,6 +9,8 @@ statcast(
   end = NULL,
   batter = NULL,
   pitcher = NULL,
+  process = FALSE,
+  names = FALSE,
   tibble = TRUE,
   verbose = FALSE
 )

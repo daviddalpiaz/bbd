@@ -104,6 +104,8 @@ statcast_day = function(date = Sys.Date() - 1,
 #' @param end End data of search. Defaults to `NULL`, which stops search at`start` date.
 #' @param batter Statcast player ID for batter of interest. Defaults to `NULL`.
 #' @param pitcher Statcast player ID for pitcher of interest. Defaults to `NULL`.
+#' @param process
+#' @param names
 #' @param tibble Controls class of object returned. Defaults to `TRUE` which
 #' returns a `tibble`. When `FALSE`, returns a `data.frame`.
 #' @param verbose Controls messaging to the user. Defaults to `FALSE` which
@@ -117,11 +119,14 @@ statcast = function(start = Sys.Date() - 1,
                     end = NULL,
                     batter = NULL,
                     pitcher = NULL,
+                    process = FALSE,
+                    names = FALSE,
                     tibble = TRUE,
                     verbose = FALSE) {
 
   # TODO: defend against invalid dates?
 
+  # TODO: repeat this code less, but save speedup
   if (identical(start, end) || is.null(end)) {
     data = statcast_day(
       date = start,
@@ -129,6 +134,12 @@ statcast = function(start = Sys.Date() - 1,
       pitcher = pitcher,
       verbose = verbose
     )
+    if (process) {
+      data = statcast_min_process(data = data)
+    }
+    if (process && names) {
+      data = statcast_names(data = data, tibble = tibble)
+    }
     if (tibble) {
       return(tibble::as_tibble(data, .name_repair = "minimal"))
     } else {
@@ -151,6 +162,14 @@ statcast = function(start = Sys.Date() - 1,
   data = data[vapply(data, nonempty_df, logical(1))]
   data = data.table::rbindlist(data)
 
+  if (process) {
+    data = statcast_min_process(data = data, tibble = tibble)
+  }
+
+  if (process && names) {
+    data = statcast_names(data = data, tibble = tibble)
+  }
+
   # TODO: make tibble only a suggests?
   # TODO: create package options for tibble vs df vs dt?
   # TODO: don't import tibble but add class tbl_df and tbl?
@@ -168,7 +187,7 @@ statcast = function(start = Sys.Date() - 1,
 #'
 #' @return A `data.frame` or `tibble`.
 #' @export
-statcast_min_process = function(data) {
+statcast_min_process = function(data, tibble = TRUE) {
 
   # TODO: verify supplied data has all necessary columns
 
@@ -190,7 +209,143 @@ statcast_min_process = function(data) {
   )
   na_vars = which(names(data) %in% na_var_names)
 
-  return(data[, -c(dupes, na_vars)])
+  data = data[, -c(dupes, na_vars)]
+
+  if (tibble) {
+    data = tibble::as_tibble(data)
+  }
+
+  return(data)
+
+}
+
+#' Title
+#'
+#' @param data
+#' @param tibble
+#'
+#' @return
+#' @export
+#'
+#' @examples
+statcast_names = function(data, tibble = TRUE) {
+
+  remove = c(
+    "name",
+    "key_person",
+    "key_uuid",
+    "key_retro",
+    "key_bbref",
+    "key_bbref_minors",
+    "key_fangraphs",
+    "key_npb"
+  )
+
+  names = chadwick_people()
+
+  data = merge(x = data, y = names, by.x = "batter", by.y = "key_mlbam", all.x = TRUE)
+  data$batter_name = data$name
+  data[, remove] = NULL
+
+  data = merge(x = data, y = names, by.x = "pitcher", by.y = "key_mlbam", all.x = TRUE)
+  data$pitcher_name = data$name
+  data[, remove] = NULL
+
+  col_order = c(
+    "pitcher",
+    "pitcher_name",
+    "batter",
+    "batter_name",
+    "pitch_type",
+    "game_date",
+    "release_speed",
+    "release_pos_x",
+    "release_pos_z",
+    "player_name",
+    "events",
+    "description",
+    "zone",
+    "des",
+    "game_type",
+    "stand",
+    "p_throws",
+    "home_team",
+    "away_team",
+    "type",
+    "hit_location",
+    "bb_type",
+    "balls",
+    "strikes",
+    "game_year",
+    "pfx_x",
+    "pfx_z",
+    "plate_x",
+    "plate_z",
+    "on_3b",
+    "on_2b",
+    "on_1b",
+    "outs_when_up",
+    "inning",
+    "inning_topbot",
+    "hc_x",
+    "hc_y",
+    "sv_id",
+    "vx0",
+    "vy0",
+    "vz0",
+    "ax",
+    "ay",
+    "az",
+    "sz_top",
+    "sz_bot",
+    "hit_distance_sc",
+    "launch_speed",
+    "launch_angle",
+    "effective_speed",
+    "release_spin_rate",
+    "release_extension",
+    "game_pk",
+    "fielder_2",
+    "fielder_3",
+    "fielder_4",
+    "fielder_5",
+    "fielder_6",
+    "fielder_7",
+    "fielder_8",
+    "fielder_9",
+    "release_pos_y",
+    "estimated_ba_using_speedangle",
+    "estimated_woba_using_speedangle",
+    "woba_value",
+    "woba_denom",
+    "babip_value",
+    "iso_value",
+    "launch_speed_angle",
+    "at_bat_number",
+    "pitch_number",
+    "pitch_name",
+    "home_score",
+    "away_score",
+    "bat_score",
+    "fld_score",
+    "post_away_score",
+    "post_home_score",
+    "post_bat_score",
+    "post_fld_score",
+    "if_fielding_alignment",
+    "of_fielding_alignment",
+    "spin_axis",
+    "delta_home_win_exp",
+    "delta_run_exp"
+  )
+
+  data = data[, col_order]
+
+  if (tibble) {
+    data = tibble::as_tibble(data)
+  }
+
+  return(data)
 
 }
 

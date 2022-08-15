@@ -4,7 +4,7 @@
 \alias{statcast_min_process}
 \title{Minimally process Statcast data}
 \usage{
-statcast_min_process(data)
+statcast_min_process(data, tibble = TRUE)
 }
 \arguments{
 \item{data}{A \code{data.frame} or \code{tibble}.}
