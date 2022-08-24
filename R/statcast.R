@@ -229,7 +229,7 @@ statcast_min_process = function(data, tibble = TRUE) {
 #' @param tibble Controls class of object returned. Defaults to `TRUE` which
 #' returns a `tibble`. When `FALSE`, returns a `data.frame`.
 #'
-#' @return
+#' @return A `data.frame` or `tibble`.
 #' @export
 statcast_names = function(data, tibble = TRUE) {
 
