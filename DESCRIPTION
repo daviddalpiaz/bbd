@@ -13,5 +13,6 @@ Suggests:
 Config/testthat/edition: 3
 URL: https://daviddalpiaz.github.io/bbd/
 Imports: 
+    curl,
     data.table,
     tibble

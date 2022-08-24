@@ -205,29 +205,21 @@ two_cols_identical = function(df) {
 }
 
 test_that("statcast always returns a data frame", {
-  skip_on_cran()
-  skip_on_ci()
   expect_true(is.data.frame(statcast_day(date = "2022-01-01"))) # date with no games
   expect_true(is.data.frame(statcast_day(date = "2022-04-07"))) # opening day 2022
 })
 
 test_that("statcast returns empty data frame on date with no games", {
-  skip_on_cran()
-  skip_on_ci()
   expect_true(is.data.frame(statcast_day(date = "2022-01-01")))
   expect_true(!nonempty_df(statcast_day(date = "2022-01-01")))
 })
 
 test_that("statcast returns non-empty data frame on date with games", {
-  skip_on_cran()
-  skip_on_ci()
   expect_true(is.data.frame(statcast_day(date = "2022-04-07")))
   expect_true(nonempty_df(statcast_day(date = "2022-04-07")))
 })
 
 test_that("statcast returns data with correct column names", {
-  skip_on_cran()
-  skip_on_ci()
   expect_identical(object = colnames(statcast_day(date = "2022-01-01")),
                    expected = sc_col_names)
   expect_identical(object = colnames(statcast_day(date = "2022-04-07")),
@@ -239,8 +231,6 @@ test_that("statcast returns data with correct column names", {
 })
 
 test_that("statcast returns data with correct column types", {
-  skip_on_cran()
-  skip_on_ci()
   expect_identical(object = coltypes(statcast_day(date = "2022-01-01")),
                    expected = sc_col_types)
   expect_identical(object = coltypes(statcast_day(date = "2022-04-07")),
@@ -252,8 +242,6 @@ test_that("statcast returns data with correct column types", {
 })
 
 test_that("statcast columns that may be removed are all NA", {
-  skip_on_cran()
-  skip_on_ci()
   expect_true(all_na(statcast_day(date = "2022-01-01")[, sc_na_vars]))
   expect_true(all_na(statcast_day(date = "2022-04-07")[, sc_na_vars]))
   expect_true(all_na(statcast_day(date = "2014-01-01")[, sc_na_vars]))
@@ -261,8 +249,6 @@ test_that("statcast columns that may be removed are all NA", {
 })
 
 test_that("second statcast pitcher column is a duplicate that may be removed", {
-  skip_on_cran()
-  skip_on_ci()
   expect_true(two_cols_identical(statcast_day(date = "2022-01-01")[, sc_pitcher_dupes]))
   expect_true(two_cols_identical(statcast_day(date = "2022-04-07")[, sc_pitcher_dupes]))
   expect_true(two_cols_identical(statcast_day(date = "2014-01-01")[, sc_pitcher_dupes]))
@@ -270,12 +256,15 @@ test_that("second statcast pitcher column is a duplicate that may be removed", {
 })
 
 test_that("second statcast fielder_2 column is a duplicate that may be removed", {
-  skip_on_cran()
-  skip_on_ci()
   expect_true(two_cols_identical(statcast_day(date = "2022-01-01")[, sc_field_2_dupes]))
   expect_true(two_cols_identical(statcast_day(date = "2022-04-07")[, sc_field_2_dupes]))
   expect_true(two_cols_identical(statcast_day(date = "2014-01-01")[, sc_field_2_dupes]))
   expect_true(two_cols_identical(statcast_day(date = "2014-04-07")[, sc_field_2_dupes]))
+})
+
+test_that("verbose arguement produces a message", {
+  expect_message(statcast_day(verbose = TRUE))
+  expect_message(statcast(verbose = TRUE))
 })
 
 # TODO: verify spring training games are returned
