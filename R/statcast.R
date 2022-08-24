@@ -104,8 +104,10 @@ statcast_day = function(date = Sys.Date() - 1,
 #' @param end End data of search. Defaults to `NULL`, which stops search at`start` date.
 #' @param batter Statcast player ID for batter of interest. Defaults to `NULL`.
 #' @param pitcher Statcast player ID for pitcher of interest. Defaults to `NULL`.
-#' @param process
-#' @param names
+#' @param process Controls processing of data. Defaults to `FALSE`. If `TRUE`,
+#' data is processed using the `statcast_min_process` function.
+#' @param names Controls processing of names. Defaults to `FALSE`. If `TRUE`,
+#' names are processed using the `statcast_names` function.
 #' @param tibble Controls class of object returned. Defaults to `TRUE` which
 #' returns a `tibble`. When `FALSE`, returns a `data.frame`.
 #' @param verbose Controls messaging to the user. Defaults to `FALSE` which
@@ -184,6 +186,8 @@ statcast = function(start = Sys.Date() - 1,
 #' Minimally process Statcast data
 #'
 #' @param data A `data.frame` or `tibble`.
+#' @param tibble Controls class of object returned. Defaults to `TRUE` which
+#' returns a `tibble`. When `FALSE`, returns a `data.frame`.
 #'
 #' @return A `data.frame` or `tibble`.
 #' @export
@@ -219,15 +223,14 @@ statcast_min_process = function(data, tibble = TRUE) {
 
 }
 
-#' Title
+#' Add names to Statcast data
 #'
-#' @param data
-#' @param tibble
+#' @param data A `data.frame` or `tibble`.
+#' @param tibble Controls class of object returned. Defaults to `TRUE` which
+#' returns a `tibble`. When `FALSE`, returns a `data.frame`.
 #'
 #' @return
 #' @export
-#'
-#' @examples
 statcast_names = function(data, tibble = TRUE) {
 
   remove = c(

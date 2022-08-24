@@ -2,13 +2,16 @@
 % Please edit documentation in R/statcast.R
 \name{statcast_names}
 \alias{statcast_names}
-\title{Title}
+\title{Add names to Statcast data}
 \usage{
 statcast_names(data, tibble = TRUE)
 }
 \arguments{
-\item{tibble}{}
+\item{data}{A \code{data.frame} or \code{tibble}.}
+
+\item{tibble}{Controls class of object returned. Defaults to \code{TRUE} which
+returns a \code{tibble}. When \code{FALSE}, returns a \code{data.frame}.}
 }
 \description{
-Title
+Add names to Statcast data
 }

@@ -24,6 +24,12 @@ statcast(
 
 \item{pitcher}{Statcast player ID for pitcher of interest. Defaults to \code{NULL}.}
 
+\item{process}{Controls processing of data. Defaults to \code{FALSE}. If \code{TRUE},
+data is processed using the \code{statcast_min_process} function.}
+
+\item{names}{Controls processing of names. Defaults to \code{FALSE}. If \code{TRUE},
+names are processed using the \code{statcast_names} function.}
+
 \item{tibble}{Controls class of object returned. Defaults to \code{TRUE} which
 returns a \code{tibble}. When \code{FALSE}, returns a \code{data.frame}.}
 

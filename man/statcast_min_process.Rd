@@ -8,6 +8,9 @@ statcast_min_process(data, tibble = TRUE)
 }
 \arguments{
 \item{data}{A \code{data.frame} or \code{tibble}.}
+
+\item{tibble}{Controls class of object returned. Defaults to \code{TRUE} which
+returns a \code{tibble}. When \code{FALSE}, returns a \code{data.frame}.}
 }
 \value{
 A \code{data.frame} or \code{tibble}.
