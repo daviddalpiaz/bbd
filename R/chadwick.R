@@ -16,7 +16,7 @@ chadwick_people = function(tibble = TRUE) {
   )
   data = data[, vars]
 
-  data = subset(data, subset = !is.na(key_mlbam))
+  data = data[!is.na(data$key_mlbam), ]
 
   names = paste(data$name_first, data$name_last)
   names = paste0(names, ifelse(data$name_suffix == "", "", paste0(" ", data$name_suffix)))
@@ -32,7 +32,3 @@ chadwick_people = function(tibble = TRUE) {
 
   return(data)
 }
-
-
-
-
