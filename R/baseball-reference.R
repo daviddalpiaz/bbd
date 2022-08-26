@@ -49,3 +49,5 @@ bref_war_daily_pitcher = function(tibble = TRUE) {
   }
   return(data)
 }
+
+# https://www.baseball-reference.com/about/war_explained.shtml
