@@ -244,13 +244,27 @@ statcast_names = function(data, tibble = TRUE) {
     "key_npb"
   )
 
-  names = chadwick_people()
+  names = chadwick_people(process = TRUE)
 
-  data = merge(x = data, y = names, by.x = "batter", by.y = "key_mlbam", all.x = TRUE)
+  # add batter name
+  data = merge(
+    x = data,
+    y = names,
+    by.x = "batter",
+    by.y = "key_mlbam",
+    all.x = TRUE
+  )
   data$batter_name = data$name
   data[, remove] = NULL
 
-  data = merge(x = data, y = names, by.x = "pitcher", by.y = "key_mlbam", all.x = TRUE)
+  # add pitcher name
+  data = merge(
+    x = data,
+    y = names,
+    by.x = "pitcher",
+    by.y = "key_mlbam",
+    all.x = TRUE
+  )
   data$pitcher_name = data$name
   data[, remove] = NULL
 
