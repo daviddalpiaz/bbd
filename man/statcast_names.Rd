@@ -12,6 +12,9 @@ statcast_names(data, tibble = TRUE)
 \item{tibble}{Controls class of object returned. Defaults to \code{TRUE} which
 returns a \code{tibble}. When \code{FALSE}, returns a \code{data.frame}.}
 }
+\value{
+A \code{data.frame} or \code{tibble}.
+}
 \description{
 Add names to Statcast data
 }
