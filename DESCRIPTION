@@ -3,7 +3,7 @@ Title: BaseBall Data
 Version: 0.0.0.9000
 Authors@R: 
     person("David", "Dalpiaz", , "dalpiaz2@illinois.edu", role = c("aut", "cre"))
-Description: Functoions to quickly obtain and process baseball data.
+Description: Functions to quickly obtain and process baseball data.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
