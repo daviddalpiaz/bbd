@@ -16,3 +16,8 @@ nonempty_df = function(x) {
 all_na = function(x) {
   return(all(is.na(x)))
 }
+
+import_curl = function() {
+  # this is here just to avoid note from R CMD CHECK
+  close(curl::curl()) # nocov
+}
