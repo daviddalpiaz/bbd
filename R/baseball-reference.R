@@ -16,7 +16,7 @@ bref_war_daily_batter = function(tibble = TRUE) {
     url,
     showProgress = FALSE,
     data.table = FALSE,
-    na.strings = ""
+    na.strings = c("", "NULL")
   )
   if (tibble) {
     data = tibble::as_tibble(data)
@@ -42,7 +42,7 @@ bref_war_daily_pitcher = function(tibble = TRUE) {
     url,
     showProgress = FALSE,
     data.table = FALSE,
-    na.strings = ""
+    na.strings = c("", "NULL")
   )
   if (tibble) {
     data = tibble::as_tibble(data)
