@@ -244,7 +244,7 @@ statcast_names = function(data, tibble = TRUE) {
     "key_npb"
   )
 
-  names = chadwick_people(process = TRUE)
+  names = bbd::people
 
   # add batter name
   data = merge(
