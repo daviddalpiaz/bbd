@@ -7,7 +7,7 @@ Description: Functions to quickly obtain and process baseball data.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Suggests: 
     curl,
     testthat (>= 3.0.0)
@@ -16,3 +16,6 @@ URL: https://daviddalpiaz.github.io/bbd/
 Imports: 
     data.table,
     tibble
+Depends: 
+    R (>= 3.6.0)
+LazyData: true
