@@ -7,3 +7,4 @@
 ^pkgdown$
 ^\.github$
 scratch.R
+^data-raw$
