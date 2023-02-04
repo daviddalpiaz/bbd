@@ -11,7 +11,6 @@ statcast(
   pitcher = NULL,
   process = FALSE,
   names = FALSE,
-  tibble = TRUE,
   verbose = FALSE
 )
 }
@@ -30,15 +29,12 @@ data is processed using the \code{statcast_min_process} function.}
 \item{names}{Controls processing of names. Defaults to \code{FALSE}. If \code{TRUE},
 names are processed using the \code{statcast_names} function.}
 
-\item{tibble}{Controls class of object returned. Defaults to \code{TRUE} which
-returns a \code{tibble}. When \code{FALSE}, returns a \code{data.frame}.}
-
 \item{verbose}{Controls messaging to the user. Defaults to \code{FALSE} which
 provides no message. When \code{TRUE}, informs user when each \code{date} begins
 downloading.}
 }
 \value{
-A \code{data.frame} or \code{tibble} containing all Statcast events between the
+An object with class \code{c("tbl_df", "tbl", "data.frame")} containing all Statcast events between the
 \code{start} date and \code{end} date inclusive.
 }
 \description{

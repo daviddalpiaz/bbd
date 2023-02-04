@@ -4,14 +4,11 @@
 \alias{bref_war_daily_batter}
 \title{Download daily updated WAR data for batters from Baseball-Reference}
 \usage{
-bref_war_daily_batter(tibble = TRUE)
-}
-\arguments{
-\item{tibble}{Controls class of object returned. Defaults to \code{TRUE} which
-returns a \code{tibble}. When \code{FALSE}, returns a \code{data.frame}.}
+bref_war_daily_batter()
 }
 \value{
-A \code{data.frame} or \code{tibble} containing batter WAR data.
+An object with class \code{c("tbl_df", "tbl", "data.frame")} containing
+batter WAR data.
 }
 \description{
 Download daily updated WAR data for batters from Baseball-Reference

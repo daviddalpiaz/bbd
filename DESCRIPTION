@@ -14,8 +14,7 @@ Suggests:
 Config/testthat/edition: 3
 URL: https://daviddalpiaz.github.io/bbd/
 Imports: 
-    data.table,
-    tibble
+    data.table
 Depends: 
     R (>= 3.6.0)
 LazyData: true

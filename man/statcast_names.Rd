@@ -4,16 +4,13 @@
 \alias{statcast_names}
 \title{Add names to Statcast data}
 \usage{
-statcast_names(data, tibble = TRUE)
+statcast_names(data)
 }
 \arguments{
-\item{data}{A \code{data.frame} or \code{tibble}.}
-
-\item{tibble}{Controls class of object returned. Defaults to \code{TRUE} which
-returns a \code{tibble}. When \code{FALSE}, returns a \code{data.frame}.}
+\item{data}{A \code{data.frame}.}
 }
 \value{
-A \code{data.frame} or \code{tibble}.
+An object with class \code{c("tbl_df", "tbl", "data.frame")}
 }
 \description{
 Add names to Statcast data

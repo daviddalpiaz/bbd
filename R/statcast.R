@@ -108,13 +108,11 @@ statcast_day = function(date = Sys.Date() - 1,
 #' data is processed using the `statcast_min_process` function.
 #' @param names Controls processing of names. Defaults to `FALSE`. If `TRUE`,
 #' names are processed using the `statcast_names` function.
-#' @param tibble Controls class of object returned. Defaults to `TRUE` which
-#' returns a `tibble`. When `FALSE`, returns a `data.frame`.
 #' @param verbose Controls messaging to the user. Defaults to `FALSE` which
 #' provides no message. When `TRUE`, informs user when each `date` begins
 #' downloading.
 #'
-#' @return A `data.frame` or `tibble` containing all Statcast events between the
+#' @return An object with class `c("tbl_df", "tbl", "data.frame")` containing all Statcast events between the
 #'  `start` date and `end` date inclusive.
 #' @export
 statcast = function(start = Sys.Date() - 1,
@@ -123,7 +121,6 @@ statcast = function(start = Sys.Date() - 1,
                     pitcher = NULL,
                     process = FALSE,
                     names = FALSE,
-                    tibble = TRUE,
                     verbose = FALSE) {
 
   # TODO: defend against invalid dates?
@@ -140,13 +137,10 @@ statcast = function(start = Sys.Date() - 1,
       data = statcast_min_process(data = data)
     }
     if (process && names) {
-      data = statcast_names(data = data, tibble = tibble)
+      data = statcast_names(data = data)
     }
-    if (tibble) {
-      return(tibble::as_tibble(data, .name_repair = "minimal"))
-    } else {
-      return(data)
-    }
+    class(data) = c("tbl_df", "tbl", "data.frame")
+    return(data)
   }
 
   start = as.Date(start)
@@ -165,19 +159,14 @@ statcast = function(start = Sys.Date() - 1,
   data = data.table::rbindlist(data)
 
   if (process) {
-    data = statcast_min_process(data = data, tibble = tibble)
+    data = statcast_min_process(data = data)
   }
 
   if (process && names) {
-    data = statcast_names(data = data, tibble = tibble)
+    data = statcast_names(data = data)
   }
 
-  # TODO: make tibble only a suggests?
-  # TODO: create package options for tibble vs df vs dt?
-  # TODO: don't import tibble but add class tbl_df and tbl?
-  if (tibble) {
-    data = tibble::as_tibble(data, .name_repair = "minimal")
-  }
+  class(data) = c("tbl_df", "tbl", "data.frame")
 
   return(data)
 
@@ -185,13 +174,11 @@ statcast = function(start = Sys.Date() - 1,
 
 #' Minimally process Statcast data
 #'
-#' @param data A `data.frame` or `tibble`.
-#' @param tibble Controls class of object returned. Defaults to `TRUE` which
-#' returns a `tibble`. When `FALSE`, returns a `data.frame`.
+#' @param data A `data.frame`.
 #'
-#' @return A `data.frame` or `tibble`.
+#' @return A `data.frame`.
 #' @export
-statcast_min_process = function(data, tibble = TRUE) {
+statcast_min_process = function(data) {
 
   # TODO: verify supplied data has all necessary columns
 
@@ -215,9 +202,7 @@ statcast_min_process = function(data, tibble = TRUE) {
 
   data = data[, -c(dupes, na_vars)]
 
-  if (tibble) {
-    data = tibble::as_tibble(data)
-  }
+  class(data) = c("tbl_df", "tbl", "data.frame")
 
   return(data)
 
@@ -225,13 +210,11 @@ statcast_min_process = function(data, tibble = TRUE) {
 
 #' Add names to Statcast data
 #'
-#' @param data A `data.frame` or `tibble`.
-#' @param tibble Controls class of object returned. Defaults to `TRUE` which
-#' returns a `tibble`. When `FALSE`, returns a `data.frame`.
+#' @param data A `data.frame`.
 #'
-#' @return A `data.frame` or `tibble`.
+#' @return An object with class `c("tbl_df", "tbl", "data.frame")`
 #' @export
-statcast_names = function(data, tibble = TRUE) {
+statcast_names = function(data) {
 
   remove = c(
     "name",
@@ -358,9 +341,7 @@ statcast_names = function(data, tibble = TRUE) {
 
   data = data[, col_order]
 
-  if (tibble) {
-    data = tibble::as_tibble(data)
-  }
+  class(data) = c("tbl_df", "tbl", "data.frame")
 
   return(data)
 
