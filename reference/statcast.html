@@ -49,7 +49,6 @@
 <span>  pitcher <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  process <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  names <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  tibble <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -82,11 +81,6 @@ data is processed using the <code>statcast_min_process</code> function.</p></dd>
 names are processed using the <code>statcast_names</code> function.</p></dd>
 
 
-<dt>tibble</dt>
-<dd><p>Controls class of object returned. Defaults to <code>TRUE</code> which
-returns a <code>tibble</code>. When <code>FALSE</code>, returns a <code>data.frame</code>.</p></dd>
-
-
 <dt>verbose</dt>
 <dd><p>Controls messaging to the user. Defaults to <code>FALSE</code> which
 provides no message. When <code>TRUE</code>, informs user when each <code>date</code> begins
@@ -97,7 +91,7 @@ downloading.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A <code>data.frame</code> or <code>tibble</code> containing all Statcast events between the
+<p>An object with class <code>c("tbl_df", "tbl", "data.frame")</code> containing all Statcast events between the
 <code>start</code> date and <code>end</code> date inclusive.</p>
     </div>
 
