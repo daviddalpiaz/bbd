@@ -2,7 +2,7 @@
 % Please edit documentation in R/statcast.R
 \name{statcast_bbd}
 \alias{statcast_bbd}
-\title{Download all Statcast data within a range of dates in the opionated \code{bbd} style}
+\title{Download all Statcast data within a range of dates in the opinionated \code{bbd} style}
 \usage{
 statcast_bbd(start = Sys.Date() - 1, end = NULL, verbose = FALSE)
 }
@@ -20,5 +20,5 @@ An object with class \code{c("tbl_df", "tbl", "data.frame")} containing
 all Statcast events between the \code{start} date and \code{end} date inclusive.
 }
 \description{
-Download all Statcast data within a range of dates in the opionated \code{bbd} style
+Download all Statcast data within a range of dates in the opinionated \code{bbd} style
 }

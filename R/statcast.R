@@ -353,7 +353,7 @@ statcast_names = function(data) {
 
 }
 
-#' Download all Statcast data within a range of dates in the opionated `bbd` style
+#' Download all Statcast data within a range of dates in the opinionated `bbd` style
 #'
 #' @param start Start date of search.
 #' @param end End data of search. Defaults to `NULL`, which stops search at`start` date.
