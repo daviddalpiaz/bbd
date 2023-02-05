@@ -195,71 +195,73 @@ sc_removed_vars = sort(c(sc_na_vars, sc_dupes))
 sc_pitcher_dupes = c(8L, 60L)
 sc_field_2_dupes = c(42L, 61L)
 
+# helper function to check if the two columns of a two column data frame are identical
+two_cols_identical = function(df) {
+  all(df[, 1] == df[, 2])
+}
+
+# helper function to get column types of a data frame
+# TODO: should this be in utils?
+# TODO: is there a base R solution to this that I'm not aware of?
 coltypes = function(x) {
   stopifnot(is.data.frame(x))
   return(unname(vapply(x, typeof, character(1))))
 }
 
-two_cols_identical = function(df) {
-  all(df[, 1] == df[, 1])
-}
+# get data for testing
+sc_new_restday = statcast_day(date = "2022-01-01")
+sc_new_gameday = statcast_day(date = "2022-04-07")
+sc_old_restday = statcast_day(date = "2022-01-01")
+sc_old_gameday = statcast_day(date = "2022-04-07")
 
 test_that("statcast always returns a data frame", {
-  expect_true(is.data.frame(statcast_day(date = "2022-01-01"))) # date with no games
-  expect_true(is.data.frame(statcast_day(date = "2022-04-07"))) # opening day 2022
+  expect_true(is.data.frame(sc_new_restday)) # date with no games
+  expect_true(is.data.frame(sc_new_gameday)) # opening day 2022
 })
 
 test_that("statcast returns empty data frame on date with no games", {
-  expect_true(is.data.frame(statcast_day(date = "2022-01-01")))
-  expect_true(!nonempty_df(statcast_day(date = "2022-01-01")))
+  expect_true(is.data.frame(sc_new_restday))
+  expect_true(!nonempty_df(sc_new_restday))
 })
 
 test_that("statcast returns non-empty data frame on date with games", {
-  expect_true(is.data.frame(statcast_day(date = "2022-04-07")))
-  expect_true(nonempty_df(statcast_day(date = "2022-04-07")))
+  expect_true(is.data.frame(sc_new_gameday))
+  expect_true(nonempty_df(sc_new_gameday))
 })
 
 test_that("statcast returns data with correct column names", {
-  expect_identical(object = colnames(statcast_day(date = "2022-01-01")),
-                   expected = sc_col_names)
-  expect_identical(object = colnames(statcast_day(date = "2022-04-07")),
-                   expected = sc_col_names)
-  expect_identical(object = colnames(statcast_day(date = "2014-01-01")),
-                   expected = sc_col_names)
-  expect_identical(object = colnames(statcast_day(date = "2014-04-07")),
-                   expected = sc_col_names)
+  expect_identical(object = colnames(sc_new_restday), expected = sc_col_names)
+  expect_identical(object = colnames(sc_new_gameday), expected = sc_col_names)
+  expect_identical(object = colnames(sc_old_restday), expected = sc_col_names)
+  expect_identical(object = colnames(sc_old_gameday), expected = sc_col_names)
 })
 
 test_that("statcast returns data with correct column types", {
-  expect_identical(object = coltypes(statcast_day(date = "2022-01-01")),
-                   expected = sc_col_types)
-  expect_identical(object = coltypes(statcast_day(date = "2022-04-07")),
-                   expected = sc_col_types)
-  expect_identical(object = coltypes(statcast_day(date = "2014-01-01")),
-                   expected = sc_col_types)
-  expect_identical(object = coltypes(statcast_day(date = "2014-04-07")),
-                   expected = sc_col_types)
+  expect_identical(object = coltypes(sc_new_restday), expected = sc_col_types)
+  expect_identical(object = coltypes(sc_new_gameday), expected = sc_col_types)
+  expect_identical(object = coltypes(sc_old_restday), expected = sc_col_types)
+  expect_identical(object = coltypes(sc_old_gameday), expected = sc_col_types)
 })
 
 test_that("statcast columns that may be removed are all NA", {
-  expect_true(all_na(statcast_day(date = "2022-01-01")[, sc_na_vars]))
-  expect_true(all_na(statcast_day(date = "2022-04-07")[, sc_na_vars]))
-  expect_true(all_na(statcast_day(date = "2014-01-01")[, sc_na_vars]))
-  expect_true(all_na(statcast_day(date = "2014-04-07")[, sc_na_vars]))
+  expect_true(all_na(sc_new_restday[, sc_na_vars]))
+  expect_true(all_na(sc_new_gameday[, sc_na_vars]))
+  expect_true(all_na(sc_old_restday[, sc_na_vars]))
+  expect_true(all_na(sc_old_gameday[, sc_na_vars]))
 })
 
 test_that("second statcast pitcher column is a duplicate that may be removed", {
-  expect_true(two_cols_identical(statcast_day(date = "2022-01-01")[, sc_pitcher_dupes]))
-  expect_true(two_cols_identical(statcast_day(date = "2022-04-07")[, sc_pitcher_dupes]))
-  expect_true(two_cols_identical(statcast_day(date = "2014-01-01")[, sc_pitcher_dupes]))
-  expect_true(two_cols_identical(statcast_day(date = "2014-04-07")[, sc_pitcher_dupes]))
+  expect_true(two_cols_identical(sc_new_restday[, sc_pitcher_dupes]))
+  expect_true(two_cols_identical(sc_new_gameday[, sc_pitcher_dupes]))
+  expect_true(two_cols_identical(sc_old_restday[, sc_pitcher_dupes]))
+  expect_true(two_cols_identical(sc_old_gameday[, sc_pitcher_dupes]))
 })
 
 test_that("second statcast fielder_2 column is a duplicate that may be removed", {
-  expect_true(two_cols_identical(statcast_day(date = "2022-01-01")[, sc_field_2_dupes]))
-  expect_true(two_cols_identical(statcast_day(date = "2022-04-07")[, sc_field_2_dupes]))
-  expect_true(two_cols_identical(statcast_day(date = "2014-01-01")[, sc_field_2_dupes]))
-  expect_true(two_cols_identical(statcast_day(date = "2014-04-07")[, sc_field_2_dupes]))
+  expect_true(two_cols_identical(sc_new_restday[, sc_field_2_dupes]))
+  expect_true(two_cols_identical(sc_new_gameday[, sc_field_2_dupes]))
+  expect_true(two_cols_identical(sc_old_restday[, sc_field_2_dupes]))
+  expect_true(two_cols_identical(sc_old_gameday[, sc_field_2_dupes]))
 })
 
 test_that("verbose arguement produces a message", {
