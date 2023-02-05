@@ -90,7 +90,7 @@ statcast_day = function(date = Sys.Date() - 1,
     url,
     showProgress = FALSE,
     data.table = FALSE,
-    colClasses = .sc_col_types,
+    colClasses = statcast_get_col_types(),
     na.strings = ""
   )
 
@@ -162,6 +162,7 @@ statcast = function(start = Sys.Date() - 1,
     data = statcast_min_process(data = data)
   }
 
+  # TODO: why the AND here? is it necessary? if so, throw error, also see above
   if (process && names) {
     data = statcast_names(data = data)
   }
@@ -216,6 +217,7 @@ statcast_min_process = function(data) {
 #' @export
 statcast_names = function(data) {
 
+  # TODO: is this still needed?
   remove = c(
     "name",
     "key_person",
@@ -230,6 +232,7 @@ statcast_names = function(data) {
   names = bbd::people
 
   # add batter name
+  # TODO: switch to data.table::merge if there is a speedup
   data = merge(
     x = data,
     y = names,
@@ -238,9 +241,11 @@ statcast_names = function(data) {
     all.x = TRUE
   )
   data$batter_name = data$name
+  # TODO: is this still needed?
   data[, remove] = NULL
 
   # add pitcher name
+  # TODO: switch to data.table::merge if there is a speedup
   data = merge(
     x = data,
     y = names,
@@ -249,6 +254,7 @@ statcast_names = function(data) {
     all.x = TRUE
   )
   data$pitcher_name = data$name
+  # TODO: is this still needed?
   data[, remove] = NULL
 
   col_order = c(
@@ -347,98 +353,104 @@ statcast_names = function(data) {
 
 }
 
-# TODO: move to a "data" file? what is "fastest" method to do so?
-.sc_col_types = c(
-  "character",
-  "integer",
-  "double",
-  "double",
-  "double",
-  "character",
-  "integer",
-  "integer",
-  "character",
-  "character",
-  "logical",
-  "logical",
-  "logical",
-  "logical",
-  "integer",
-  "character",
-  "character",
-  "character",
-  "character",
-  "character",
-  "character",
-  "character",
-  "integer",
-  "character",
-  "integer",
-  "integer",
-  "integer",
-  "double",
-  "double",
-  "double",
-  "double",
-  "integer",
-  "integer",
-  "integer",
-  "integer",
-  "integer",
-  "character",
-  "double",
-  "double",
-  "logical",
-  "logical",
-  "integer",
-  "logical",
-  "character",
-  "double",
-  "double",
-  "double",
-  "double",
-  "double",
-  "double",
-  "double",
-  "double",
-  "integer",
-  "double",
-  "integer",
-  "double",
-  "integer",
-  "double",
-  "integer",
-  "integer",
-  "integer",
-  "integer",
-  "integer",
-  "integer",
-  "integer",
-  "integer",
-  "integer",
-  "integer",
-  "double",
-  "double",
-  "double",
-  "double",
-  "integer",
-  "integer",
-  "integer",
-  "integer",
-  "integer",
-  "integer",
-  "character",
-  "integer",
-  "integer",
-  "integer",
-  "integer",
-  "integer",
-  "integer",
-  "integer",
-  "integer",
-  "character",
-  "character",
-  "integer",
-  "double",
-  "double"
-)
+#' Obtain vector of expected Statcast column types
+#'
+#' @return A character vector of the expected Statcast column types
+#' @export
+statcast_get_col_types = function() {
+  c(
+    "character",
+    "integer",
+    "double",
+    "double",
+    "double",
+    "character",
+    "integer",
+    "integer",
+    "character",
+    "character",
+    "logical",
+    "logical",
+    "logical",
+    "logical",
+    "integer",
+    "character",
+    "character",
+    "character",
+    "character",
+    "character",
+    "character",
+    "character",
+    "integer",
+    "character",
+    "integer",
+    "integer",
+    "integer",
+    "double",
+    "double",
+    "double",
+    "double",
+    "integer",
+    "integer",
+    "integer",
+    "integer",
+    "integer",
+    "character",
+    "double",
+    "double",
+    "logical",
+    "logical",
+    "integer",
+    "logical",
+    "character",
+    "double",
+    "double",
+    "double",
+    "double",
+    "double",
+    "double",
+    "double",
+    "double",
+    "integer",
+    "double",
+    "integer",
+    "double",
+    "integer",
+    "double",
+    "integer",
+    "integer",
+    "integer",
+    "integer",
+    "integer",
+    "integer",
+    "integer",
+    "integer",
+    "integer",
+    "integer",
+    "double",
+    "double",
+    "double",
+    "double",
+    "integer",
+    "integer",
+    "integer",
+    "integer",
+    "integer",
+    "integer",
+    "character",
+    "integer",
+    "integer",
+    "integer",
+    "integer",
+    "integer",
+    "integer",
+    "integer",
+    "integer",
+    "character",
+    "character",
+    "integer",
+    "double",
+    "double"
+  )
+
+}
