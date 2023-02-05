@@ -28,26 +28,18 @@ devtools::install_github("daviddalpiaz/bbd")
 
 ## Example
 
-The most basic usage of `bbd` is collecting [statcast
+The most basic usage of `bbd` is collecting [Statcast
 data](https://baseballsavant.mlb.com/statcast_search) for all games
 played between two dates, inclusive.
 
 ``` r
 library(bbd)
 ws_2022 = statcast(start = "2022-10-28", end = "2022-11-05")
-statcast_info = data.frame("Variable Name" = names(ws_2022),
-                           "Variable Type" = sapply(ws_2022, typeof))
 ```
 
-``` r
-statcast_info
-```
+### Statcast Variables
 
-``` r
-knitr::kable(statcast_info)
-```
-
-| Variable.Name                   | Variable.Type |
+| Variable Name                   | Variable Type |
 |:--------------------------------|:--------------|
 | pitch_type                      | character     |
 | game_date                       | integer       |
