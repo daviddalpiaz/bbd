@@ -35,98 +35,109 @@ played between two dates, inclusive.
 ``` r
 library(bbd)
 ws_2022 = statcast(start = "2022-10-28", end = "2022-11-05")
-data.frame(names = names(ws_2022), types = sapply(ws_2022, typeof))
-#>                              names     types
-#> 1                       pitch_type character
-#> 2                        game_date   integer
-#> 3                    release_speed    double
-#> 4                    release_pos_x    double
-#> 5                    release_pos_z    double
-#> 6                      player_name character
-#> 7                           batter   integer
-#> 8                          pitcher   integer
-#> 9                           events character
-#> 10                     description character
-#> 11                        spin_dir   logical
-#> 12            spin_rate_deprecated   logical
-#> 13          break_angle_deprecated   logical
-#> 14         break_length_deprecated   logical
-#> 15                            zone   integer
-#> 16                             des character
-#> 17                       game_type character
-#> 18                           stand character
-#> 19                        p_throws character
-#> 20                       home_team character
-#> 21                       away_team character
-#> 22                            type character
-#> 23                    hit_location   integer
-#> 24                         bb_type character
-#> 25                           balls   integer
-#> 26                         strikes   integer
-#> 27                       game_year   integer
-#> 28                           pfx_x    double
-#> 29                           pfx_z    double
-#> 30                         plate_x    double
-#> 31                         plate_z    double
-#> 32                           on_3b   integer
-#> 33                           on_2b   integer
-#> 34                           on_1b   integer
-#> 35                    outs_when_up   integer
-#> 36                          inning   integer
-#> 37                   inning_topbot character
-#> 38                            hc_x    double
-#> 39                            hc_y    double
-#> 40                  tfs_deprecated   logical
-#> 41             tfs_zulu_deprecated   logical
-#> 42                       fielder_2   integer
-#> 43                          umpire   logical
-#> 44                           sv_id character
-#> 45                             vx0    double
-#> 46                             vy0    double
-#> 47                             vz0    double
-#> 48                              ax    double
-#> 49                              ay    double
-#> 50                              az    double
-#> 51                          sz_top    double
-#> 52                          sz_bot    double
-#> 53                 hit_distance_sc   integer
-#> 54                    launch_speed    double
-#> 55                    launch_angle   integer
-#> 56                 effective_speed    double
-#> 57               release_spin_rate   integer
-#> 58               release_extension    double
-#> 59                         game_pk   integer
-#> 60                         pitcher   integer
-#> 61                       fielder_2   integer
-#> 62                       fielder_3   integer
-#> 63                       fielder_4   integer
-#> 64                       fielder_5   integer
-#> 65                       fielder_6   integer
-#> 66                       fielder_7   integer
-#> 67                       fielder_8   integer
-#> 68                       fielder_9   integer
-#> 69                   release_pos_y    double
-#> 70   estimated_ba_using_speedangle    double
-#> 71 estimated_woba_using_speedangle    double
-#> 72                      woba_value    double
-#> 73                      woba_denom   integer
-#> 74                     babip_value   integer
-#> 75                       iso_value   integer
-#> 76              launch_speed_angle   integer
-#> 77                   at_bat_number   integer
-#> 78                    pitch_number   integer
-#> 79                      pitch_name character
-#> 80                      home_score   integer
-#> 81                      away_score   integer
-#> 82                       bat_score   integer
-#> 83                       fld_score   integer
-#> 84                 post_away_score   integer
-#> 85                 post_home_score   integer
-#> 86                  post_bat_score   integer
-#> 87                  post_fld_score   integer
-#> 88           if_fielding_alignment character
-#> 89           of_fielding_alignment character
-#> 90                       spin_axis   integer
-#> 91              delta_home_win_exp    double
-#> 92                   delta_run_exp    double
+statcast_info = data.frame("Variable Name" = names(ws_2022),
+                           "Variable Type" = sapply(ws_2022, typeof))
 ```
+
+``` r
+statcast_info
+```
+
+``` r
+knitr::kable(statcast_info)
+```
+
+| Variable.Name                   | Variable.Type |
+|:--------------------------------|:--------------|
+| pitch_type                      | character     |
+| game_date                       | integer       |
+| release_speed                   | double        |
+| release_pos_x                   | double        |
+| release_pos_z                   | double        |
+| player_name                     | character     |
+| batter                          | integer       |
+| pitcher                         | integer       |
+| events                          | character     |
+| description                     | character     |
+| spin_dir                        | logical       |
+| spin_rate_deprecated            | logical       |
+| break_angle_deprecated          | logical       |
+| break_length_deprecated         | logical       |
+| zone                            | integer       |
+| des                             | character     |
+| game_type                       | character     |
+| stand                           | character     |
+| p_throws                        | character     |
+| home_team                       | character     |
+| away_team                       | character     |
+| type                            | character     |
+| hit_location                    | integer       |
+| bb_type                         | character     |
+| balls                           | integer       |
+| strikes                         | integer       |
+| game_year                       | integer       |
+| pfx_x                           | double        |
+| pfx_z                           | double        |
+| plate_x                         | double        |
+| plate_z                         | double        |
+| on_3b                           | integer       |
+| on_2b                           | integer       |
+| on_1b                           | integer       |
+| outs_when_up                    | integer       |
+| inning                          | integer       |
+| inning_topbot                   | character     |
+| hc_x                            | double        |
+| hc_y                            | double        |
+| tfs_deprecated                  | logical       |
+| tfs_zulu_deprecated             | logical       |
+| fielder_2                       | integer       |
+| umpire                          | logical       |
+| sv_id                           | character     |
+| vx0                             | double        |
+| vy0                             | double        |
+| vz0                             | double        |
+| ax                              | double        |
+| ay                              | double        |
+| az                              | double        |
+| sz_top                          | double        |
+| sz_bot                          | double        |
+| hit_distance_sc                 | integer       |
+| launch_speed                    | double        |
+| launch_angle                    | integer       |
+| effective_speed                 | double        |
+| release_spin_rate               | integer       |
+| release_extension               | double        |
+| game_pk                         | integer       |
+| pitcher                         | integer       |
+| fielder_2                       | integer       |
+| fielder_3                       | integer       |
+| fielder_4                       | integer       |
+| fielder_5                       | integer       |
+| fielder_6                       | integer       |
+| fielder_7                       | integer       |
+| fielder_8                       | integer       |
+| fielder_9                       | integer       |
+| release_pos_y                   | double        |
+| estimated_ba_using_speedangle   | double        |
+| estimated_woba_using_speedangle | double        |
+| woba_value                      | double        |
+| woba_denom                      | integer       |
+| babip_value                     | integer       |
+| iso_value                       | integer       |
+| launch_speed_angle              | integer       |
+| at_bat_number                   | integer       |
+| pitch_number                    | integer       |
+| pitch_name                      | character     |
+| home_score                      | integer       |
+| away_score                      | integer       |
+| bat_score                       | integer       |
+| fld_score                       | integer       |
+| post_away_score                 | integer       |
+| post_home_score                 | integer       |
+| post_bat_score                  | integer       |
+| post_fld_score                  | integer       |
+| if_fielding_alignment           | character     |
+| of_fielding_alignment           | character     |
+| spin_axis                       | integer       |
+| delta_home_win_exp              | double        |
+| delta_run_exp                   | double        |

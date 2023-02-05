@@ -39,5 +39,14 @@ The most basic usage of `bbd` is collecting [statcast data](https://baseballsava
 ```{r example}
 library(bbd)
 ws_2022 = statcast(start = "2022-10-28", end = "2022-11-05")
-data.frame(names = names(ws_2022), types = sapply(ws_2022, typeof))
+statcast_info = data.frame("Variable Name" = names(ws_2022),
+                           "Variable Type" = sapply(ws_2022, typeof))
+```
+
+```{r, eval = FALSE}
+statcast_info
+```
+
+```{r}
+knitr::kable(statcast_info)
 ```
