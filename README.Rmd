@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 [![R-CMD-check](https://github.com/daviddalpiaz/bbd/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/daviddalpiaz/bbd/actions)
 <!-- badges: end -->
 
-The `bbd` package is an [lightweight package](https://www.tinyverse.org/) that contains functions to facilitate the collection of **b**ase**b**all **d**ata from various sources online. **This package is currently experimental.** All function interfaces are liable to change without notice.
+The `bbd` package is a [lightweight package](https://www.tinyverse.org/) that contains functions to facilitate the collection of **b**ase**b**all **d**ata from various sources online. **This package is currently experimental.** All function interfaces are liable to change without notice.
 
 For a mature and feature rich baseball data package, consider [`baseballr`](https://github.com/BillPetti/baseballr).
 
