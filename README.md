@@ -8,9 +8,10 @@
 [![R-CMD-check](https://github.com/daviddalpiaz/bbd/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/daviddalpiaz/bbd/actions)
 <!-- badges: end -->
 
-The `bbd` package contains functions that facilitate the collection of
-baseball data from various sources online. **This packages is currently
-experimental.** All function interfaces are liable to change.
+The `bbd` package is a [lightweight package](https://www.tinyverse.org/)
+that contains functions to facilitate the collection of baseball data
+from various sources online. **This package is currently experimental.**
+All function interfaces are liable to change without notice.
 
 For a mature and feature rich baseball data package, consider
 [`baseballr`](https://github.com/BillPetti/baseballr).
@@ -33,16 +34,7 @@ played between two dates, inclusive.
 
 ``` r
 library(bbd)
-ws_2022 = statcast(start = "2022-10-28", end = "2022-11-05", verbose = TRUE)
-#> Obtaining data for games on 2022-10-28.
-#> Obtaining data for games on 2022-10-29.
-#> Obtaining data for games on 2022-10-30.
-#> Obtaining data for games on 2022-10-31.
-#> Obtaining data for games on 2022-11-01.
-#> Obtaining data for games on 2022-11-02.
-#> Obtaining data for games on 2022-11-03.
-#> Obtaining data for games on 2022-11-04.
-#> Obtaining data for games on 2022-11-05.
+ws_2022 = statcast(start = "2022-10-28", end = "2022-11-05")
 data.frame(names = names(ws_2022), types = sapply(ws_2022, typeof))
 #>                              names     types
 #> 1                       pitch_type character
