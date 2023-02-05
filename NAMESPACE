@@ -3,5 +3,6 @@
 export(bref_war_daily_batter)
 export(bref_war_daily_pitcher)
 export(statcast)
+export(statcast_get_col_types)
 export(statcast_min_process)
 export(statcast_names)
