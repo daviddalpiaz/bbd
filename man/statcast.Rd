@@ -34,8 +34,8 @@ provides no message. When \code{TRUE}, informs user when each \code{date} begins
 downloading.}
 }
 \value{
-An object with class \code{c("tbl_df", "tbl", "data.frame")} containing all Statcast events between the
-\code{start} date and \code{end} date inclusive.
+An object with class \code{c("tbl_df", "tbl", "data.frame")} containing
+all Statcast events between the \code{start} date and \code{end} date inclusive.
 }
 \description{
 Download all Statcast data within a range of dates
