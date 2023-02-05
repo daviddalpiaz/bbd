@@ -16,10 +16,3 @@ nonempty_df = function(x) {
 all_na = function(x) {
   return(all(is.na(x)))
 }
-
-#' Obtain vector of classes to create a tibble
-#'
-#' @return A character vector
-make_tibble_class = function() {
-  return(c("tbl_df", "tbl", "data.frame"))
-}
