@@ -112,8 +112,8 @@ statcast_day = function(date = Sys.Date() - 1,
 #' provides no message. When `TRUE`, informs user when each `date` begins
 #' downloading.
 #'
-#' @return An object with class `c("tbl_df", "tbl", "data.frame")` containing all Statcast events between the
-#'  `start` date and `end` date inclusive.
+#' @return An object with class `c("tbl_df", "tbl", "data.frame")` containing
+#' all Statcast events between the `start` date and `end` date inclusive.
 #' @export
 statcast = function(start = Sys.Date() - 1,
                     end = NULL,
@@ -126,7 +126,7 @@ statcast = function(start = Sys.Date() - 1,
   # TODO: defend against invalid dates?
 
   # TODO: repeat this code less, but save speedup
-  if (identical(start, end) || is.null(end)) {
+  if (is.null(end) || identical(start, end)) {
     data = statcast_day(
       date = start,
       batter = batter,
