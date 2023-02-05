@@ -353,6 +353,27 @@ statcast_names = function(data) {
 
 }
 
+#' Download all Statcast data within a range of dates in the opionated `bbd` style
+#'
+#' @param start Start date of search.
+#' @param end End data of search. Defaults to `NULL`, which stops search at`start` date.
+#' @param verbose Controls messaging to the user. Defaults to `FALSE` which
+#' provides no message. When `TRUE`, informs user when each `date` begins
+#' downloading.
+#'
+#' @return An object with class `c("tbl_df", "tbl", "data.frame")` containing
+#' all Statcast events between the `start` date and `end` date inclusive.
+#' @export
+statcast_bbd = function(start = Sys.Date() - 1, end = NULL, verbose = FALSE) {
+  statcast(
+    start = Sys.Date() - 1,
+    end = NULL,
+    process = TRUE,
+    names = TRUE,
+    verbose = verbose
+  )
+}
+
 #' Obtain vector of expected Statcast column types
 #'
 #' @return A character vector of the expected Statcast column types
