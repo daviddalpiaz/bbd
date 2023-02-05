@@ -72,100 +72,388 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://daviddalpiaz.github.io/bbd/">bbd</a></span><span class="op">)</span></span>
 <span><span class="va">ws_2022</span> <span class="op">=</span> <span class="fu"><a href="reference/statcast.html">statcast</a></span><span class="op">(</span>start <span class="op">=</span> <span class="st">"2022-10-28"</span>, end <span class="op">=</span> <span class="st">"2022-11-05"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">ws_2022</span><span class="op">)</span>, types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">ws_2022</span>, <span class="va">typeof</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;                              names     types</span></span>
-<span><span class="co">#&gt; 1                       pitch_type character</span></span>
-<span><span class="co">#&gt; 2                        game_date   integer</span></span>
-<span><span class="co">#&gt; 3                    release_speed    double</span></span>
-<span><span class="co">#&gt; 4                    release_pos_x    double</span></span>
-<span><span class="co">#&gt; 5                    release_pos_z    double</span></span>
-<span><span class="co">#&gt; 6                      player_name character</span></span>
-<span><span class="co">#&gt; 7                           batter   integer</span></span>
-<span><span class="co">#&gt; 8                          pitcher   integer</span></span>
-<span><span class="co">#&gt; 9                           events character</span></span>
-<span><span class="co">#&gt; 10                     description character</span></span>
-<span><span class="co">#&gt; 11                        spin_dir   logical</span></span>
-<span><span class="co">#&gt; 12            spin_rate_deprecated   logical</span></span>
-<span><span class="co">#&gt; 13          break_angle_deprecated   logical</span></span>
-<span><span class="co">#&gt; 14         break_length_deprecated   logical</span></span>
-<span><span class="co">#&gt; 15                            zone   integer</span></span>
-<span><span class="co">#&gt; 16                             des character</span></span>
-<span><span class="co">#&gt; 17                       game_type character</span></span>
-<span><span class="co">#&gt; 18                           stand character</span></span>
-<span><span class="co">#&gt; 19                        p_throws character</span></span>
-<span><span class="co">#&gt; 20                       home_team character</span></span>
-<span><span class="co">#&gt; 21                       away_team character</span></span>
-<span><span class="co">#&gt; 22                            type character</span></span>
-<span><span class="co">#&gt; 23                    hit_location   integer</span></span>
-<span><span class="co">#&gt; 24                         bb_type character</span></span>
-<span><span class="co">#&gt; 25                           balls   integer</span></span>
-<span><span class="co">#&gt; 26                         strikes   integer</span></span>
-<span><span class="co">#&gt; 27                       game_year   integer</span></span>
-<span><span class="co">#&gt; 28                           pfx_x    double</span></span>
-<span><span class="co">#&gt; 29                           pfx_z    double</span></span>
-<span><span class="co">#&gt; 30                         plate_x    double</span></span>
-<span><span class="co">#&gt; 31                         plate_z    double</span></span>
-<span><span class="co">#&gt; 32                           on_3b   integer</span></span>
-<span><span class="co">#&gt; 33                           on_2b   integer</span></span>
-<span><span class="co">#&gt; 34                           on_1b   integer</span></span>
-<span><span class="co">#&gt; 35                    outs_when_up   integer</span></span>
-<span><span class="co">#&gt; 36                          inning   integer</span></span>
-<span><span class="co">#&gt; 37                   inning_topbot character</span></span>
-<span><span class="co">#&gt; 38                            hc_x    double</span></span>
-<span><span class="co">#&gt; 39                            hc_y    double</span></span>
-<span><span class="co">#&gt; 40                  tfs_deprecated   logical</span></span>
-<span><span class="co">#&gt; 41             tfs_zulu_deprecated   logical</span></span>
-<span><span class="co">#&gt; 42                       fielder_2   integer</span></span>
-<span><span class="co">#&gt; 43                          umpire   logical</span></span>
-<span><span class="co">#&gt; 44                           sv_id character</span></span>
-<span><span class="co">#&gt; 45                             vx0    double</span></span>
-<span><span class="co">#&gt; 46                             vy0    double</span></span>
-<span><span class="co">#&gt; 47                             vz0    double</span></span>
-<span><span class="co">#&gt; 48                              ax    double</span></span>
-<span><span class="co">#&gt; 49                              ay    double</span></span>
-<span><span class="co">#&gt; 50                              az    double</span></span>
-<span><span class="co">#&gt; 51                          sz_top    double</span></span>
-<span><span class="co">#&gt; 52                          sz_bot    double</span></span>
-<span><span class="co">#&gt; 53                 hit_distance_sc   integer</span></span>
-<span><span class="co">#&gt; 54                    launch_speed    double</span></span>
-<span><span class="co">#&gt; 55                    launch_angle   integer</span></span>
-<span><span class="co">#&gt; 56                 effective_speed    double</span></span>
-<span><span class="co">#&gt; 57               release_spin_rate   integer</span></span>
-<span><span class="co">#&gt; 58               release_extension    double</span></span>
-<span><span class="co">#&gt; 59                         game_pk   integer</span></span>
-<span><span class="co">#&gt; 60                         pitcher   integer</span></span>
-<span><span class="co">#&gt; 61                       fielder_2   integer</span></span>
-<span><span class="co">#&gt; 62                       fielder_3   integer</span></span>
-<span><span class="co">#&gt; 63                       fielder_4   integer</span></span>
-<span><span class="co">#&gt; 64                       fielder_5   integer</span></span>
-<span><span class="co">#&gt; 65                       fielder_6   integer</span></span>
-<span><span class="co">#&gt; 66                       fielder_7   integer</span></span>
-<span><span class="co">#&gt; 67                       fielder_8   integer</span></span>
-<span><span class="co">#&gt; 68                       fielder_9   integer</span></span>
-<span><span class="co">#&gt; 69                   release_pos_y    double</span></span>
-<span><span class="co">#&gt; 70   estimated_ba_using_speedangle    double</span></span>
-<span><span class="co">#&gt; 71 estimated_woba_using_speedangle    double</span></span>
-<span><span class="co">#&gt; 72                      woba_value    double</span></span>
-<span><span class="co">#&gt; 73                      woba_denom   integer</span></span>
-<span><span class="co">#&gt; 74                     babip_value   integer</span></span>
-<span><span class="co">#&gt; 75                       iso_value   integer</span></span>
-<span><span class="co">#&gt; 76              launch_speed_angle   integer</span></span>
-<span><span class="co">#&gt; 77                   at_bat_number   integer</span></span>
-<span><span class="co">#&gt; 78                    pitch_number   integer</span></span>
-<span><span class="co">#&gt; 79                      pitch_name character</span></span>
-<span><span class="co">#&gt; 80                      home_score   integer</span></span>
-<span><span class="co">#&gt; 81                      away_score   integer</span></span>
-<span><span class="co">#&gt; 82                       bat_score   integer</span></span>
-<span><span class="co">#&gt; 83                       fld_score   integer</span></span>
-<span><span class="co">#&gt; 84                 post_away_score   integer</span></span>
-<span><span class="co">#&gt; 85                 post_home_score   integer</span></span>
-<span><span class="co">#&gt; 86                  post_bat_score   integer</span></span>
-<span><span class="co">#&gt; 87                  post_fld_score   integer</span></span>
-<span><span class="co">#&gt; 88           if_fielding_alignment character</span></span>
-<span><span class="co">#&gt; 89           of_fielding_alignment character</span></span>
-<span><span class="co">#&gt; 90                       spin_axis   integer</span></span>
-<span><span class="co">#&gt; 91              delta_home_win_exp    double</span></span>
-<span><span class="co">#&gt; 92                   delta_run_exp    double</span></span></code></pre></div>
+<span><span class="va">statcast_info</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="st">"Variable Name"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">ws_2022</span><span class="op">)</span>,</span>
+<span>                           <span class="st">"Variable Type"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">sapply</a></span><span class="op">(</span><span class="va">ws_2022</span>, <span class="va">typeof</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">statcast_info</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">statcast_info</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">Variable.Name</th>
+<th align="left">Variable.Type</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">pitch_type</td>
+<td align="left">character</td>
+</tr>
+<tr class="even">
+<td align="left">game_date</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">release_speed</td>
+<td align="left">double</td>
+</tr>
+<tr class="even">
+<td align="left">release_pos_x</td>
+<td align="left">double</td>
+</tr>
+<tr class="odd">
+<td align="left">release_pos_z</td>
+<td align="left">double</td>
+</tr>
+<tr class="even">
+<td align="left">player_name</td>
+<td align="left">character</td>
+</tr>
+<tr class="odd">
+<td align="left">batter</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">pitcher</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">events</td>
+<td align="left">character</td>
+</tr>
+<tr class="even">
+<td align="left">description</td>
+<td align="left">character</td>
+</tr>
+<tr class="odd">
+<td align="left">spin_dir</td>
+<td align="left">logical</td>
+</tr>
+<tr class="even">
+<td align="left">spin_rate_deprecated</td>
+<td align="left">logical</td>
+</tr>
+<tr class="odd">
+<td align="left">break_angle_deprecated</td>
+<td align="left">logical</td>
+</tr>
+<tr class="even">
+<td align="left">break_length_deprecated</td>
+<td align="left">logical</td>
+</tr>
+<tr class="odd">
+<td align="left">zone</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">des</td>
+<td align="left">character</td>
+</tr>
+<tr class="odd">
+<td align="left">game_type</td>
+<td align="left">character</td>
+</tr>
+<tr class="even">
+<td align="left">stand</td>
+<td align="left">character</td>
+</tr>
+<tr class="odd">
+<td align="left">p_throws</td>
+<td align="left">character</td>
+</tr>
+<tr class="even">
+<td align="left">home_team</td>
+<td align="left">character</td>
+</tr>
+<tr class="odd">
+<td align="left">away_team</td>
+<td align="left">character</td>
+</tr>
+<tr class="even">
+<td align="left">type</td>
+<td align="left">character</td>
+</tr>
+<tr class="odd">
+<td align="left">hit_location</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">bb_type</td>
+<td align="left">character</td>
+</tr>
+<tr class="odd">
+<td align="left">balls</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">strikes</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">game_year</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">pfx_x</td>
+<td align="left">double</td>
+</tr>
+<tr class="odd">
+<td align="left">pfx_z</td>
+<td align="left">double</td>
+</tr>
+<tr class="even">
+<td align="left">plate_x</td>
+<td align="left">double</td>
+</tr>
+<tr class="odd">
+<td align="left">plate_z</td>
+<td align="left">double</td>
+</tr>
+<tr class="even">
+<td align="left">on_3b</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">on_2b</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">on_1b</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">outs_when_up</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">inning</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">inning_topbot</td>
+<td align="left">character</td>
+</tr>
+<tr class="even">
+<td align="left">hc_x</td>
+<td align="left">double</td>
+</tr>
+<tr class="odd">
+<td align="left">hc_y</td>
+<td align="left">double</td>
+</tr>
+<tr class="even">
+<td align="left">tfs_deprecated</td>
+<td align="left">logical</td>
+</tr>
+<tr class="odd">
+<td align="left">tfs_zulu_deprecated</td>
+<td align="left">logical</td>
+</tr>
+<tr class="even">
+<td align="left">fielder_2</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">umpire</td>
+<td align="left">logical</td>
+</tr>
+<tr class="even">
+<td align="left">sv_id</td>
+<td align="left">character</td>
+</tr>
+<tr class="odd">
+<td align="left">vx0</td>
+<td align="left">double</td>
+</tr>
+<tr class="even">
+<td align="left">vy0</td>
+<td align="left">double</td>
+</tr>
+<tr class="odd">
+<td align="left">vz0</td>
+<td align="left">double</td>
+</tr>
+<tr class="even">
+<td align="left">ax</td>
+<td align="left">double</td>
+</tr>
+<tr class="odd">
+<td align="left">ay</td>
+<td align="left">double</td>
+</tr>
+<tr class="even">
+<td align="left">az</td>
+<td align="left">double</td>
+</tr>
+<tr class="odd">
+<td align="left">sz_top</td>
+<td align="left">double</td>
+</tr>
+<tr class="even">
+<td align="left">sz_bot</td>
+<td align="left">double</td>
+</tr>
+<tr class="odd">
+<td align="left">hit_distance_sc</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">launch_speed</td>
+<td align="left">double</td>
+</tr>
+<tr class="odd">
+<td align="left">launch_angle</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">effective_speed</td>
+<td align="left">double</td>
+</tr>
+<tr class="odd">
+<td align="left">release_spin_rate</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">release_extension</td>
+<td align="left">double</td>
+</tr>
+<tr class="odd">
+<td align="left">game_pk</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">pitcher</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">fielder_2</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">fielder_3</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">fielder_4</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">fielder_5</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">fielder_6</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">fielder_7</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">fielder_8</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">fielder_9</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">release_pos_y</td>
+<td align="left">double</td>
+</tr>
+<tr class="even">
+<td align="left">estimated_ba_using_speedangle</td>
+<td align="left">double</td>
+</tr>
+<tr class="odd">
+<td align="left">estimated_woba_using_speedangle</td>
+<td align="left">double</td>
+</tr>
+<tr class="even">
+<td align="left">woba_value</td>
+<td align="left">double</td>
+</tr>
+<tr class="odd">
+<td align="left">woba_denom</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">babip_value</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">iso_value</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">launch_speed_angle</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">at_bat_number</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">pitch_number</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">pitch_name</td>
+<td align="left">character</td>
+</tr>
+<tr class="even">
+<td align="left">home_score</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">away_score</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">bat_score</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">fld_score</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">post_away_score</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">post_home_score</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">post_bat_score</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">post_fld_score</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">if_fielding_alignment</td>
+<td align="left">character</td>
+</tr>
+<tr class="odd">
+<td align="left">of_fielding_alignment</td>
+<td align="left">character</td>
+</tr>
+<tr class="even">
+<td align="left">spin_axis</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">delta_home_win_exp</td>
+<td align="left">double</td>
+</tr>
+<tr class="even">
+<td align="left">delta_run_exp</td>
+<td align="left">double</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="license">
