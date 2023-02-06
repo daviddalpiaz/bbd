@@ -1,3 +1,12 @@
+# don't run tests on ci
+skip_on_ci()
+
+# don't run tests on ci
+skip_on_cran()
+
+# skip all tests if cannot reach Baseball-Reference
+skip_if_offline(host = "baseball-reference.com")
+
 bref_bat = bref_war_daily_batter()
 bref_pit = bref_war_daily_pitcher()
 

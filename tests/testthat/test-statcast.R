@@ -1,3 +1,12 @@
+# don't run tests on ci
+skip_on_ci()
+
+# don't run tests on ci
+skip_on_cran()
+
+# skip all tests if cannot reach Statcast search
+skip_if_offline(host = "baseballsavant.mlb.com")
+
 sc_col_names = c(
   "pitch_type",
   "game_date",

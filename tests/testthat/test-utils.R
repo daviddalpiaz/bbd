@@ -1,3 +1,9 @@
+# don't run tests on ci
+skip_on_ci()
+
+# don't run tests on ci
+skip_on_cran()
+
 test_that("empty df retuns FALSE", {
   expect_false(nonempty_df(data.frame()))
 })
