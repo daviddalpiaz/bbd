@@ -55,7 +55,7 @@
 </h1></div>
 <!-- badges: start -->
 
-<p>The <code>bbd</code> package is an <a href="https://www.tinyverse.org/" class="external-link">lightweight package</a> that contains functions to facilitate the collection of <strong>b</strong>ase<strong>b</strong>all <strong>d</strong>ata from various sources online. <strong>This package is currently experimental.</strong> All function interfaces are liable to change without notice.</p>
+<p>The <code>bbd</code> package is a <a href="https://www.tinyverse.org/" class="external-link">lightweight package</a> that contains functions to facilitate the collection of <strong>b</strong>ase<strong>b</strong>all <strong>d</strong>ata from various sources online. <strong>This package is currently experimental.</strong> All function interfaces are liable to change without notice.</p>
 <p>For a mature and feature rich baseball data package, consider <a href="https://github.com/BillPetti/baseballr" class="external-link"><code>baseballr</code></a>.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -75,7 +75,7 @@
 <div class="section level3">
 <h3 id="statcast-variables">Statcast Variables<a class="anchor" aria-label="anchor" href="#statcast-variables"></a>
 </h3>
-<p>By default, <code>bbd</code> attempts to be un-opinionated, and thus returns a data frame containing the exact variables returned by the Statcast API. Notice that <code>pitcher</code> and <code>fielder_2</code> variables are duplicated.</p>
+<p>By default, <code>bbd</code> attempts to be un-opinionated, and thus returns a data frame containing the exact variables (to the extent possible) returned by the Statcast API. Notice that <code>pitcher</code> and <code>fielder_2</code> variables are duplicated.</p>
 <table class="table">
 <thead><tr class="header">
 <th align="left">Variable Name</th>
@@ -452,7 +452,7 @@
 </tr>
 </tbody>
 </table>
-<p>The <code><a href="reference/statcast.html">statcast()</a></code> function provides arguments that allow for some opinionated processing. Check the documentation for deatils of this processing. Most importantly, functionality to obtain both batter <em>and</em> pitcher names is included.</p>
+<p>The <code><a href="reference/statcast.html">statcast()</a></code> function provides arguments that allow for some opinionated processing. Check the documentation for details of this processing. Most importantly, functionality to obtain both batter <em>and</em> pitcher names is included.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ws_2022_processed</span> <span class="op">=</span> <span class="fu"><a href="reference/statcast.html">statcast</a></span><span class="op">(</span></span>
 <span>  start <span class="op">=</span> <span class="st">"2022-10-28"</span>,</span>
@@ -836,6 +836,7 @@
 </tr>
 </tbody>
 </table>
+<p>This functionality is also provided by the opinionated <code><a href="reference/statcast_bbd.html">statcast_bbd()</a></code> function for convenience.</p>
 </div>
 </div>
 </div>
