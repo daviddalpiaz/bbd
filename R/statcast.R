@@ -473,5 +473,4 @@ statcast_get_col_types = function() {
     "double",
     "double"
   )
-
 }
