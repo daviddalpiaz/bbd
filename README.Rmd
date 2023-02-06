@@ -53,13 +53,13 @@ statcast_info = data.frame(
 
 ### Statcast Variables
 
-By default, `bbd` attempts to be un-opinionated, and thus returns a data frame containing the exact variables returned by the Statcast API. Notice that `pitcher` and `fielder_2` variables are duplicated.
+By default, `bbd` attempts to be un-opinionated, and thus returns a data frame containing the exact variables (to the extent possible) returned by the Statcast API. Notice that `pitcher` and `fielder_2` variables are duplicated.
 
 ```{r sc-info-table, echo = FALSE}
 knitr::kable(statcast_info)
 ```
 
-The `statcast()` function provides arguments that allow for some opinionated processing. Check the documentation for deatils of this processing. Most importantly, functionality to obtain both batter *and* pitcher names is included.
+The `statcast()` function provides arguments that allow for some opinionated processing. Check the documentation for details of this processing. Most importantly, functionality to obtain both batter *and* pitcher names is included.
 
 ```{r, eval = FALSE}
 ws_2022_processed = statcast(
@@ -88,3 +88,5 @@ statcast_info_proc = data.frame(
 ```{r sc-info-table-proc, echo = FALSE}
 knitr::kable(statcast_info_proc)
 ```
+
+This functionality is also provided by the opinionated `statcast_bbd()` function for convenience. 

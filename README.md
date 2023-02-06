@@ -41,8 +41,9 @@ ws_2022 = statcast(start = "2022-10-28", end = "2022-11-05")
 ### Statcast Variables
 
 By default, `bbd` attempts to be un-opinionated, and thus returns a data
-frame containing the exact variables returned by the Statcast API.
-Notice that `pitcher` and `fielder_2` variables are duplicated.
+frame containing the exact variables (to the extent possible) returned
+by the Statcast API. Notice that `pitcher` and `fielder_2` variables are
+duplicated.
 
 | Variable Name                   | Variable Type |
 |:--------------------------------|:--------------|
@@ -140,7 +141,7 @@ Notice that `pitcher` and `fielder_2` variables are duplicated.
 | delta_run_exp                   | double        |
 
 The `statcast()` function provides arguments that allow for some
-opinionated processing. Check the documentation for deatils of this
+opinionated processing. Check the documentation for details of this
 processing. Most importantly, functionality to obtain both batter *and*
 pitcher names is included.
 
@@ -247,3 +248,6 @@ ws_2022_processed = statcast(
 | spin_axis                       | integer       |
 | delta_home_win_exp              | double        |
 | delta_run_exp                   | double        |
+
+This functionality is also provided by the opinionated `statcast_bbd()`
+function for convenience.
