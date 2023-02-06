@@ -221,11 +221,12 @@ try({
 }, silent = TRUE)
 
 # did we get the data?
-got_data =
-  exists("sc_new_restday") &&
-  exists("sc_new_gameday") &&
-  exists("sc_old_restday") &&
+got_data = all(
+  exists("sc_new_restday"),
+  exists("sc_new_gameday"),
+  exists("sc_old_restday"),
   exists("sc_old_gameday")
+)
 
 # asserts -----------------------------------------------------------------
 

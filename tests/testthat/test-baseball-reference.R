@@ -7,7 +7,10 @@ try({
 }, silent = TRUE)
 
 # did we get the data?
-got_data = exists("bref_bat") && exists("bref_pit")
+got_data = all(
+  exists("bref_bat"),
+  exists("bref_pit")
+)
 
 # asserts -----------------------------------------------------------------
 
