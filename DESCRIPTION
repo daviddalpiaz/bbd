@@ -12,7 +12,8 @@ Suggests:
     curl,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-URL: https://daviddalpiaz.github.io/bbd/
+URL: https://daviddalpiaz.github.io/bbd/, https://github.com/daviddalpiaz/
+BugReports: https://github.com/daviddalpiaz/bbd/issues
 Imports: 
     data.table
 Depends: 
