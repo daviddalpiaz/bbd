@@ -21,7 +21,7 @@ data = list(
 # combine people datasets
 data = as.data.frame(data.table::rbindlist(data))
 
-# define variables as interest, mostly keys and names
+# define variables of interest, mostly keys and names
 vars = c(
   "key_person",
   "key_uuid",
