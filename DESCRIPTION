@@ -2,7 +2,7 @@ Package: bbd
 Title: BaseBall Data
 Version: 0.0.0.9000
 Authors@R: 
-    person("David", "Dalpiaz", , "dalpiaz2@illinois.edu", role = c("aut", "cre"))
+    person(given = "David", family = "Dalpiaz", email = "dalpiaz2@illinois.edu", role = c("aut", "cre"))
 Description: Functions to quickly obtain and process baseball data.
 License: GPL (>= 3) + file LICENSE
 Encoding: UTF-8
