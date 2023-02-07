@@ -366,8 +366,10 @@ statcast_names = function(data) {
 #' @export
 statcast_bbd = function(start = Sys.Date() - 1, end = NULL, verbose = FALSE) {
   statcast(
-    start = Sys.Date() - 1,
-    end = NULL,
+    start = start,
+    end = end,
+    batter = NULL,
+    pitcher = NULL,
     process = TRUE,
     names = TRUE,
     verbose = verbose
