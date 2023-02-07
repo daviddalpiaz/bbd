@@ -1,4 +1,3 @@
-library(testthat)
-library(bbd)
-
+library("testthat")
+library("bbd")
 test_check("bbd")
