@@ -1,17 +1,20 @@
 # setup -------------------------------------------------------------------
 
-# helper function to check if the two columns of a two column data frame are identical
-two_cols_identical = function(df) {
-  all(df[, 1] == df[, 2])
-}
+# get data for testing
+try({
+  sc_new_restday = statcast_day(date = "2022-01-01")
+  sc_new_gameday = statcast_day(date = "2022-04-07")
+  sc_old_restday = statcast_day(date = "2022-01-01")
+  sc_old_gameday = statcast_day(date = "2022-04-07")
+}, silent = TRUE)
 
-# helper function to get column types of a data frame
-# TODO: should this be in utils?
-# TODO: is there a base R solution to this that I'm not aware of?
-coltypes = function(x) {
-  stopifnot(is.data.frame(x))
-  return(unname(vapply(x, typeof, character(1))))
-}
+# did we get the data?
+got_data = all(
+  exists("sc_new_restday"),
+  exists("sc_new_gameday"),
+  exists("sc_old_restday"),
+  exists("sc_old_gameday")
+)
 
 # expected Statcast column names
 sc_col_names = c(
@@ -211,22 +214,6 @@ sc_dupes = sort(c(60L, 42L))
 sc_removed_vars = sort(c(sc_na_vars, sc_dupes))
 sc_pitcher_dupes = c(8L, 60L)
 sc_field_2_dupes = c(42L, 61L)
-
-# get data for testing
-try({
-  sc_new_restday = statcast_day(date = "2022-01-01")
-  sc_new_gameday = statcast_day(date = "2022-04-07")
-  sc_old_restday = statcast_day(date = "2022-01-01")
-  sc_old_gameday = statcast_day(date = "2022-04-07")
-}, silent = TRUE)
-
-# did we get the data?
-got_data = all(
-  exists("sc_new_restday"),
-  exists("sc_new_gameday"),
-  exists("sc_old_restday"),
-  exists("sc_old_gameday")
-)
 
 # asserts -----------------------------------------------------------------
 
