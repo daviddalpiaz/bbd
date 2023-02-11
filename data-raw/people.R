@@ -24,16 +24,8 @@ data = as.data.frame(data.table::rbindlist(data))
 # define variables of interest, mostly keys and names
 vars = c(
   "key_person",
-  "key_uuid",
   "key_mlbam",
-  "key_retro",
   "key_bbref",
-  "key_bbref_minors",
-  "key_fangraphs",
-  "key_npb",
-  "name_last",
-  "name_first",
-  "name_suffix"
 )
 
 # subset to variables of interest
@@ -61,5 +53,9 @@ people = data.frame(name = names, data)
 # TODO: download and lookup functions to re-create "full" people data
 people = people[, c("name", "key_mlbam", "key_bbref")]
 
+# create statcast specific version
+people_sc = people[, c("name", "key_mlbam")]
+
 # add to package
 usethis::use_data(people, overwrite = TRUE, version = 3)
+usethis::use_data(people_sc, overwrite = TRUE, version = 3)
