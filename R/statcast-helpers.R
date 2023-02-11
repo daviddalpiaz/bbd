@@ -178,10 +178,6 @@ statcast_names = function(data) {
 
 }
 
-
-
-
-
 #' Obtain vector of expected Statcast column types
 #'
 #' @return A character vector of the expected Statcast column types
