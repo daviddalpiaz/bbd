@@ -56,5 +56,10 @@ data$name_suffix = NULL
 # add "full" name to dataset
 people = data.frame(name = names, data)
 
+# further subset to only name, key_mlbam, and key_bbref
+# these are the only data currently provided
+# TODO: download and lookup functions to re-create "full" people data
+people = people[, c("name", "key_mlbam", "key_bbref")]
+
 # add to package
 usethis::use_data(people, overwrite = TRUE, version = 3)
