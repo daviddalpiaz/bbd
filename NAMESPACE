@@ -2,6 +2,7 @@
 
 export(bref_war_daily_batter)
 export(bref_war_daily_pitcher)
+export(mlb_roster)
 export(statcast)
 export(statcast_bbd)
 export(statcast_get_colnames)
