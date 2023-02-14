@@ -41,8 +41,8 @@ statcast_day = function(date = Sys.Date() - 1,
 
   # create URL
   # TODO: does decreasing pasting improve speed?
-  # TODO: consider row orders (currently matching baseballr)
-  # TODO: possible to order rows by "time"
+  # TODO: consider row orders (see notes below)
+  # TODO: possible to order rows by "time" (probably not possible, create helper function)
   url = paste0(
     "https://baseballsavant.mlb.com/statcast_search/csv?all=true",
     "&hfPT=",
@@ -50,7 +50,7 @@ statcast_day = function(date = Sys.Date() - 1,
     "&hfBBT=",
     "&hfPR=",
     "&hfZ=",
-    "&stadium=",
+    "&stadium=", # TODO: can this be used to acquire milb data?
     "&hfBBL=",
     "&hfNewZones=",
     "&hfGT=R%7CPO%7CS%7C&hfC",
@@ -77,10 +77,10 @@ statcast_day = function(date = Sys.Date() - 1,
     "&hfInn=",
     "&min_pitches=0",
     "&min_results=0",
-    "&group_by=name",
-    "&sort_col=pitches",
-    "&player_event_sort=h_launch_speed",
-    "&sort_order=desc",
+    "&group_by=name", # TODO: change this? (statcast search gives some hints)
+    "&sort_col=pitches", # TODO: change this?
+    "&player_event_sort=h_launch_speed", # TODO: change this?
+    "&sort_order=desc", # TODO: change this?
     "&min_abs=0",
     "&type=details"
   )
