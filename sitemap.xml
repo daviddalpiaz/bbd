@@ -43,7 +43,10 @@
     <loc>https://daviddalpiaz.github.io/bbd/reference/statcast_day.html</loc>
   </url>
   <url>
-    <loc>https://daviddalpiaz.github.io/bbd/reference/statcast_get_col_types.html</loc>
+    <loc>https://daviddalpiaz.github.io/bbd/reference/statcast_get_colnames.html</loc>
+  </url>
+  <url>
+    <loc>https://daviddalpiaz.github.io/bbd/reference/statcast_get_coltypes.html</loc>
   </url>
   <url>
     <loc>https://daviddalpiaz.github.io/bbd/reference/statcast_min_process.html</loc>

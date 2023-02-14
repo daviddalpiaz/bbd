@@ -38,7 +38,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Minimally process Statcast data</h1>
-      <small class="dont-index">Source: <a href="https://github.com/daviddalpiaz/bbd/blob/HEAD/R/statcast.R" class="external-link"><code>R/statcast.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/daviddalpiaz/bbd/blob/HEAD/R/statcast-helpers.R" class="external-link"><code>R/statcast-helpers.R</code></a></small>
       <div class="d-none name"><code>statcast_min_process.Rd</code></div>
     </div>
 
@@ -54,14 +54,14 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>data</dt>
-<dd><p>A <code>data.frame</code>.</p></dd>
+<dd><p>A <code>data.frame</code> with columns that match the return of <code>statcast_get_col_types()</code>.</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A <code>data.frame</code>.</p>
+<p>A <code>data.frame</code> containing minimally processed Statcast data</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
