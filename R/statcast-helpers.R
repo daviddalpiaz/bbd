@@ -1,12 +1,15 @@
 #' Minimally process Statcast data
 #'
-#' @param data A `data.frame`.
+#' @param data A `data.frame` with columns that match the return of `statcast_get_col_types()`.
 #'
-#' @return A `data.frame`.
+#' @return A `data.frame` containing minimally processed Statcast data
 #' @export
 statcast_min_process = function(data) {
 
-  # TODO: verify supplied data has all necessary columns
+  # verify that supplied data has expected columns
+  if (!identical(names(data), bbd::statcast_get_colnames())) {
+    stop("Supplied data does not have expected columns.")
+  }
 
   # find duplicated columns (statcast returns duplicated column names)
   dupes = c(
@@ -24,12 +27,17 @@ statcast_min_process = function(data) {
     "tfs_zulu_deprecated",
     "umpire"
   )
+
+  # find column numbers for na_vars
   na_vars = which(names(data) %in% na_var_names)
 
+  # removes dupes and na_vars
   data = data[, -c(dupes, na_vars)]
 
+  # attach tibble and data frames classes
   class(data) = c("tbl_df", "tbl", "data.frame")
 
+  # return data
   return(data)
 
 }
@@ -182,7 +190,7 @@ statcast_names = function(data) {
 #'
 #' @return A character vector of the expected Statcast column types
 #' @export
-statcast_get_col_types = function() {
+statcast_get_coltypes = function() {
   c(
     "character",
     "integer",
@@ -276,5 +284,106 @@ statcast_get_col_types = function() {
     "integer",
     "double",
     "double"
+  )
+}
+
+#' Obtain vector of expected Statcast column names
+#'
+#' @return A character vector of the expected Statcast column names
+#' @export
+statcast_get_colnames = function() {
+  c(
+    "pitch_type",
+    "game_date",
+    "release_speed",
+    "release_pos_x",
+    "release_pos_z",
+    "player_name",
+    "batter",
+    "pitcher",
+    "events",
+    "description",
+    "spin_dir",
+    "spin_rate_deprecated",
+    "break_angle_deprecated",
+    "break_length_deprecated",
+    "zone",
+    "des",
+    "game_type",
+    "stand",
+    "p_throws",
+    "home_team",
+    "away_team",
+    "type",
+    "hit_location",
+    "bb_type",
+    "balls",
+    "strikes",
+    "game_year",
+    "pfx_x",
+    "pfx_z",
+    "plate_x",
+    "plate_z",
+    "on_3b",
+    "on_2b",
+    "on_1b",
+    "outs_when_up",
+    "inning",
+    "inning_topbot",
+    "hc_x",
+    "hc_y",
+    "tfs_deprecated",
+    "tfs_zulu_deprecated",
+    "fielder_2",
+    "umpire",
+    "sv_id",
+    "vx0",
+    "vy0",
+    "vz0",
+    "ax",
+    "ay",
+    "az",
+    "sz_top",
+    "sz_bot",
+    "hit_distance_sc",
+    "launch_speed",
+    "launch_angle",
+    "effective_speed",
+    "release_spin_rate",
+    "release_extension",
+    "game_pk",
+    "pitcher",
+    "fielder_2",
+    "fielder_3",
+    "fielder_4",
+    "fielder_5",
+    "fielder_6",
+    "fielder_7",
+    "fielder_8",
+    "fielder_9",
+    "release_pos_y",
+    "estimated_ba_using_speedangle",
+    "estimated_woba_using_speedangle",
+    "woba_value",
+    "woba_denom",
+    "babip_value",
+    "iso_value",
+    "launch_speed_angle",
+    "at_bat_number",
+    "pitch_number",
+    "pitch_name",
+    "home_score",
+    "away_score",
+    "bat_score",
+    "fld_score",
+    "post_away_score",
+    "post_home_score",
+    "post_bat_score",
+    "post_fld_score",
+    "if_fielding_alignment",
+    "of_fielding_alignment",
+    "spin_axis",
+    "delta_home_win_exp",
+    "delta_run_exp"
   )
 }

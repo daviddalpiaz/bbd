@@ -90,7 +90,7 @@ statcast_day = function(date = Sys.Date() - 1,
     url,
     showProgress = FALSE,
     data.table = FALSE,
-    colClasses = statcast_get_col_types(),
+    colClasses = statcast_get_coltypes(),
     na.strings = ""
   )
 
