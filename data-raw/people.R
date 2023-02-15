@@ -21,15 +21,16 @@ data = list(
 # combine people datasets
 data = as.data.frame(data.table::rbindlist(data))
 
-# define variables of interest, mostly keys and names
-vars = c(
-  "key_person",
-  "key_mlbam",
-  "key_bbref",
-)
-
-# subset to variables of interest
-data = data[, vars]
+# # define variables of interest, mostly keys and names
+# vars = c(
+#   "key_person",
+#   "key_mlbam",
+#   "key_bbref",
+#   "key_fangraphs"
+# )
+#
+# # subset to variables of interest
+# data = data[, vars]
 
 # remove non-MLB people
 data = data[!is.na(data$key_mlbam), ]
@@ -51,7 +52,7 @@ people = data.frame(name = names, data)
 # further subset to only name, key_mlbam, and key_bbref
 # these are the only data currently provided
 # TODO: download and lookup functions to re-create "full" people data
-people = people[, c("name", "key_mlbam", "key_bbref")]
+people = people[, c("name", "key_mlbam", "key_bbref", "key_fangraphs")]
 
 # create statcast specific version
 people_sc = people[, c("name", "key_mlbam")]
