@@ -43,6 +43,7 @@ statcast_day = function(date = Sys.Date() - 1,
   # TODO: does decreasing pasting improve speed?
   # TODO: consider row orders (see notes below)
   # TODO: possible to order rows by "time" (probably not possible, create helper function)
+  # TODO: create a "make URL" type function?
   url = paste0(
     "https://baseballsavant.mlb.com/statcast_search/csv?all=true",
     "&hfPT=",
@@ -139,7 +140,7 @@ statcast = function(start = Sys.Date() - 1,
     if (process && names) {
       data = statcast_names(data = data)
     }
-    class(data) = c("tbl_df", "tbl", "data.frame")
+    class(data) = table_class()
     return(data)
   }
 
