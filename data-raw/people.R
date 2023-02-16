@@ -33,8 +33,8 @@ names = paste0(names, ifelse(data$name_suffix == "", "", paste0(" ", data$name_s
 # add "full" name to dataset
 people = data.frame(name = names, data)
 
-# these are the only data currently provided
-# TODO: download and lookup functions to re-create "full" people data
+# subset to name and keys currently used in package
+# TODO: create download and lookup functions to help users re-create "full" people data
 people = people[, c("name", "key_mlbam", "key_bbref", "key_fangraphs")]
 
 # add to package
