@@ -3,21 +3,22 @@
 \docType{data}
 \name{people}
 \alias{people}
-\title{People Information}
+\title{People Information from the Chadwick Baseball Bureau Register}
 \format{
-\subsection{\code{people}}{
-
-A data frame with 100,965 rows and 9 columns:
+A data frame with 101259 rows and 4 columns:
 \describe{
-\item{name}{name Player name}
-...
-}
+\item{\code{name}}{\verb{[character]} Player's full name listed as: Given Family Suffix}
+\item{\code{key_mlbam}}{\verb{[integer]} Player's MLB Advanced Media (MLBAM) identifer}
+\item{\code{key_bbref}}{\verb{[character]} Player's \href{https://www.baseball-reference.com/}{Baseball-Reference} identifer}
+\item{\code{key_fangraphs}}{\verb{[integer]} Player's \href{https://www.fangraphs.com/}{FanGraphs} identifer}
 }
 }
 \usage{
 people
 }
 \description{
-TODO: put description here
+A dataset containing baseball player names and unique identifiers used by
+various sources. Original data source and documentation:
+\href{https://github.com/chadwickbureau/register}{\code{chadwickbureau/register}}
 }
 \keyword{datasets}
