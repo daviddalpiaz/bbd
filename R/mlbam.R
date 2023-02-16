@@ -42,8 +42,8 @@ mlb_roster = function(team) {
     "StatusDescription"
   )
 
-  # attach tibble and data frames classes
-  class(out) = c("tbl_df", "tbl", "data.frame")
+  # set class for table object
+  class(out) = table_class()
 
   # return roster
   return(out)

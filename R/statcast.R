@@ -167,7 +167,7 @@ statcast = function(start = Sys.Date() - 1,
     data = statcast_names(data = data)
   }
 
-  class(data) = c("tbl_df", "tbl", "data.frame")
+  class(data) = table_class()
 
   return(data)
 

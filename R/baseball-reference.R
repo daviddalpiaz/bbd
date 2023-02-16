@@ -16,7 +16,7 @@ bref_war_daily_batter = function() {
     data.table = FALSE,
     na.strings = c("", "NULL")
   )
-  class(data) = c("tbl_df", "tbl", "data.frame")
+  class(data) = table_class()
   return(data)
 }
 
@@ -38,7 +38,7 @@ bref_war_daily_pitcher = function() {
     data.table = FALSE,
     na.strings = c("", "NULL")
   )
-  class(data) = c("tbl_df", "tbl", "data.frame")
+  class(data) = table_class()
   return(data)
 }
 
