@@ -38,3 +38,10 @@ coltypes = function(df) {
   stopifnot(is.data.frame(df))
   unname(vapply(df, typeof, character(1)))
 }
+
+#' Return vector of table classes
+#'
+#' @return The vector `c("tbl_df", "tbl", "data.table", "data.frame")`
+table_class = function() {
+  c("tbl_df", "tbl", "data.table", "data.frame")
+}
