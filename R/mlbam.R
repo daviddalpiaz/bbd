@@ -26,9 +26,9 @@ mlb_roster = function(team) {
 
   # acquire JSON, extract roster, flatten, add nicer names
   # TODO: consider column types and NA or "" values
-  out = jsonlite::fromJSON(url)$roster
-  out = jsonlite::flatten(out)
-  names(out) = c(
+  data = jsonlite::fromJSON(url)$roster
+  data = jsonlite::flatten(data)
+  names(data) = c(
     "JerseyNumber",
     "TeamID",
     "PersonID",
@@ -43,9 +43,9 @@ mlb_roster = function(team) {
   )
 
   # set class for table object
-  class(out) = table_class()
+  class(data) = table_class()
 
   # return roster
-  return(out)
+  return(data)
 
 }
