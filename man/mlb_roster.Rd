@@ -7,10 +7,24 @@
 mlb_roster(team)
 }
 \arguments{
-\item{team}{A numeric MLB statsapi team ID.}
+\item{team}{\verb{[numeric]} MLB \href{https://statsapi.mlb.com/}{\code{statsapi}} team ID}
 }
 \value{
-A data frame contain a team's active roster
+An object with class \code{c("tbl_df", "tbl", "data.frame")}. Specifically,
+a data frame with \code{40} rows and \code{11} columns:
+\describe{
+\item{\code{JerseyNumber}}{\verb{[character]} desc}
+\item{\code{TeamID}}{\verb{[integer]} desc}
+\item{\code{PersonID}}{\verb{[integer]} desc}
+\item{\code{FullName}}{\verb{[character]} desc}
+\item{\code{PersonLink}}{\verb{[character]} desc}
+\item{\code{PositionCode}}{\verb{[character]} desc}
+\item{\code{PositionName}}{\verb{[character]} desc}
+\item{\code{PositionType}}{\verb{[character]} desc}
+\item{\code{PositionAbbreviation}}{\verb{[character]} desc}
+\item{\code{StatusCode}}{\verb{[character]} desc}
+\item{\code{StatusDescription}}{\verb{[character]} desc}
+}
 }
 \description{
 Get MLB active rosters

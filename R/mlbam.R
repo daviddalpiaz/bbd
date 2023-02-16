@@ -1,8 +1,22 @@
 #' Get MLB active rosters
 #'
-#' @param team A numeric MLB statsapi team ID.
+#' @param team `[numeric]` MLB [`statsapi`](https://statsapi.mlb.com/) team ID
 #'
-#' @return A data frame contain a team's active roster
+#' @return An object with class `c("tbl_df", "tbl", "data.frame")`. Specifically,
+#' a data frame with `40` rows and `11` columns:
+#' \describe{
+#'   \item{`JerseyNumber`}{`[character]` desc}
+#'   \item{`TeamID`}{`[integer]` desc}
+#'   \item{`PersonID`}{`[integer]` desc}
+#'   \item{`FullName`}{`[character]` desc}
+#'   \item{`PersonLink`}{`[character]` desc}
+#'   \item{`PositionCode`}{`[character]` desc}
+#'   \item{`PositionName`}{`[character]` desc}
+#'   \item{`PositionType`}{`[character]` desc}
+#'   \item{`PositionAbbreviation`}{`[character]` desc}
+#'   \item{`StatusCode`}{`[character]` desc}
+#'   \item{`StatusDescription`}{`[character]` desc}
+#' }
 #' @export
 mlb_roster = function(team) {
 
@@ -10,9 +24,23 @@ mlb_roster = function(team) {
   # TODO: make lookup table or function
   url = paste("https://statsapi.mlb.com/api/v1/teams/", team, "/roster/", sep = "")
 
-  # aquire JSON and extract roster
-  # TODO: modify variable existence and names?
+  # acquire JSON, extract roster, flatten, add nicer names
+  # TODO: consider column types and NA or "" values
   out = jsonlite::fromJSON(url)$roster
+  out = jsonlite::flatten(out)
+  names(out) = c(
+    "JerseyNumber",
+    "TeamID",
+    "PersonID",
+    "FullName",
+    "PersonLink",
+    "PositionCode",
+    "PositionName",
+    "PositionType",
+    "PositionAbbreviation",
+    "StatusCode",
+    "StatusDescription"
+  )
 
   # attach tibble and data frames classes
   class(out) = c("tbl_df", "tbl", "data.frame")
