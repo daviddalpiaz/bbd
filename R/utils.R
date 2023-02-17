@@ -41,7 +41,7 @@ coltypes = function(df) {
 
 #' Return vector of table classes
 #'
-#' @return The vector `c("tbl_df", "tbl", "data.table", "data.frame")`
+#' @return The vector `c("tbl_df", "tbl", "data.frame")`
 table_class = function() {
-  c("tbl_df", "tbl", "data.table", "data.frame")
+  c("tbl_df", "tbl", "data.frame")
 }
