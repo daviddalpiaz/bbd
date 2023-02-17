@@ -2,7 +2,8 @@
 % Please edit documentation in R/statcast.R
 \name{statcast}
 \alias{statcast}
-\title{Download all Statcast data within a range of dates}
+\alias{statcast_bbd}
+\title{Download Statcast data within a range of dates}
 \usage{
 statcast(
   start = Sys.Date() - 1,
@@ -13,11 +14,13 @@ statcast(
   names = FALSE,
   verbose = FALSE
 )
+
+statcast_bbd(start = Sys.Date() - 1, end = NULL, verbose = FALSE)
 }
 \arguments{
 \item{start}{Start date of search.}
 
-\item{end}{End data of search. Defaults to \code{NULL}, which stops search at\code{start} date.}
+\item{end}{End data of search. Defaults to \code{NULL}, which stops search at \code{start} date.}
 
 \item{batter}{Statcast player ID for batter of interest. Defaults to \code{NULL}.}
 
@@ -27,16 +30,16 @@ statcast(
 data is processed using the \code{statcast_min_process} function.}
 
 \item{names}{Controls processing of names. Defaults to \code{FALSE}. If \code{TRUE},
-names are processed using the \code{statcast_names} function.}
+names are processed using the \code{statcast_add_names} function.}
 
 \item{verbose}{Controls messaging to the user. Defaults to \code{FALSE} which
 provides no message. When \code{TRUE}, informs user when each \code{date} begins
 downloading.}
 }
 \value{
-An object with class \code{c("tbl_df", "tbl", "data.frame")} containing
-all Statcast events between the \code{start} date and \code{end} date inclusive.
+An object with class \code{table_class()} containing all Statcast events
+between the \code{start} date and \code{end} date inclusive.
 }
 \description{
-Download all Statcast data within a range of dates
+Download Statcast data within a range of dates
 }

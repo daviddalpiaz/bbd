@@ -7,7 +7,7 @@
 statcast_min_process = function(data) {
 
   # verify that supplied data has expected columns
-  if (!identical(names(data), bbd::statcast_get_colnames())) {
+  if (!identical(names(data), statcast_get_colnames())) {
     stop("Supplied data does not have expected columns.")
   }
 
@@ -35,7 +35,7 @@ statcast_min_process = function(data) {
   data = data[, -c(dupes, na_vars)]
 
   # attach tibble and data frames classes
-  class(data) = c("tbl_df", "tbl", "data.frame")
+  # class(data) = table_class()
 
   # return data
   return(data)
@@ -48,7 +48,7 @@ statcast_min_process = function(data) {
 #'
 #' @return An object with class `c("tbl_df", "tbl", "data.frame")`
 #' @export
-statcast_names = function(data) {
+statcast_add_names = function(data) {
 
   # TODO: is this still needed?
   remove = c(
@@ -180,23 +180,102 @@ statcast_names = function(data) {
 
   data = data[, col_order]
 
-  class(data) = c("tbl_df", "tbl", "data.frame")
+  # class(data) = table_class()
 
   return(data)
 
 }
 
-#' Obtain vector of expected Statcast column types
+#' Make Statcast URL
 #'
-#' @return A character vector of the expected Statcast column types
-#' @export
-statcast_get_coltypes = function() {
+#' @param date Game date
+#' @param batter Statcast player ID for batter of interest. Defaults to `NULL`.
+#' @param pitcher Statcast player ID for pitcher of interest. Defaults to `NULL`.
+#'
+#' @return A length one chracter vector contain a Statcast URL
+statcast_make_url = function(date, batter, pitcher) {
+
+  # setup variables for URL
+  type = ""
+  if (is.null(batter)) {
+    batter = ""
+    if (is.null(pitcher)) {
+      pitcher = ""
+      type = ""
+    } else {
+      type = "&player_type=pitcher"
+      pitcher = paste0("&pitchers_lookup%5B%5D=", pitcher)
+    }
+  } else {
+    batter = paste0("&batters_lookup%5B%5D=", batter)
+    if (is.null(pitcher)) {
+      type = "&player_type=batter"
+    } else {
+      pitcher = paste0("&pitchers_lookup%5B%5D=", pitcher)
+    }
+  }
+
+  # create URL
+  # TODO: does decreasing pasting improve speed?
+  # TODO: consider row orders (see notes below)
+  # TODO: possible to order rows by "time" (probably not possible, create helper function)
+  # TODO: create a "make URL" type function?
+  url = paste0(
+    "https://baseballsavant.mlb.com/statcast_search/csv?all=true",
+    "&hfPT=",
+    "&hfAB=",
+    "&hfBBT=",
+    "&hfPR=",
+    "&hfZ=",
+    "&stadium=", # TODO: can this be used to acquire milb data?
+    "&hfBBL=",
+    "&hfNewZones=",
+    "&hfGT=R%7CPO%7CS%7C&hfC",
+    "hfSit=",
+    "hfOuts=",
+    "opponent=",
+    "pitcher_throws=",
+    "batter_stands=",
+    "hfSA=",
+    type,
+    "&hfInfield=",
+    "&team=",
+    "&position=",
+    "&hfOutfield=",
+    "&hfRO=",
+    "&home_road=",
+    pitcher,
+    batter,
+    "&game_date_gt=", date,
+    "&game_date_lt=", date,
+    "&hfFlag=",
+    "&hfPull=",
+    "&metric_1=",
+    "&hfInn=",
+    "&min_pitches=0",
+    "&min_results=0",
+    "&group_by=name", # TODO: change this? (statcast search gives some hints)
+    "&sort_col=pitches", # TODO: change this?
+    "&player_event_sort=h_launch_speed", # TODO: change this?
+    "&sort_order=desc", # TODO: change this?
+    "&min_abs=0",
+    "&type=details"
+  )
+
+  return(url)
+
+}
+
+#' Obtain vector of expected Statcast column classes
+#'
+#' @return A character vector of the expected Statcast column classes
+statcast_get_colclasses = function() {
   c(
     "character",
-    "integer",
-    "double",
-    "double",
-    "double",
+    "Date",
+    "numeric",
+    "numeric",
+    "numeric",
     "character",
     "integer",
     "integer",
@@ -219,39 +298,37 @@ statcast_get_coltypes = function() {
     "integer",
     "integer",
     "integer",
-    "double",
-    "double",
-    "double",
-    "double",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
     "integer",
     "integer",
     "integer",
     "integer",
     "integer",
     "character",
-    "double",
-    "double",
+    "numeric",
+    "numeric",
     "logical",
     "logical",
     "integer",
     "logical",
     "character",
-    "double",
-    "double",
-    "double",
-    "double",
-    "double",
-    "double",
-    "double",
-    "double",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
     "integer",
-    "double",
+    "numeric",
     "integer",
-    "double",
+    "numeric",
     "integer",
-    "double",
-    "integer",
-    "integer",
+    "numeric",
     "integer",
     "integer",
     "integer",
@@ -260,19 +337,12 @@ statcast_get_coltypes = function() {
     "integer",
     "integer",
     "integer",
-    "double",
-    "double",
-    "double",
-    "double",
     "integer",
     "integer",
-    "integer",
-    "integer",
-    "integer",
-    "integer",
-    "character",
-    "integer",
-    "integer",
+    "numeric",
+    "numeric",
+    "numeric",
+    "numeric",
     "integer",
     "integer",
     "integer",
@@ -280,17 +350,25 @@ statcast_get_coltypes = function() {
     "integer",
     "integer",
     "character",
+    "integer",
+    "integer",
+    "integer",
+    "integer",
+    "integer",
+    "integer",
+    "integer",
+    "integer",
+    "character",
     "character",
     "integer",
-    "double",
-    "double"
+    "numeric",
+    "numeric"
   )
 }
 
 #' Obtain vector of expected Statcast column names
 #'
 #' @return A character vector of the expected Statcast column names
-#' @export
 statcast_get_colnames = function() {
   c(
     "pitch_type",

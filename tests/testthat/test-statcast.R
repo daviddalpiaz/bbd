@@ -2,10 +2,10 @@
 
 # get data for testing
 try({
-  sc_new_restday = statcast_day(date = "2022-01-01")
-  sc_new_gameday = statcast_day(date = "2022-04-07")
-  sc_old_restday = statcast_day(date = "2022-01-01")
-  sc_old_gameday = statcast_day(date = "2022-04-07")
+  sc_new_restday = suppressWarnings(statcast(start = "2022-01-01"))
+  sc_new_gameday = suppressWarnings(statcast(start = "2022-04-07"))
+  sc_old_restday = suppressWarnings(statcast(start = "2022-01-01"))
+  sc_old_gameday = suppressWarnings(statcast(start = "2022-04-07"))
 }, silent = TRUE)
 
 # did we get the data?
@@ -115,7 +115,7 @@ sc_col_names = c(
 # expected Statcast column types
 sc_col_types = c(
   "character",
-  "integer",
+  "double",
   "double",
   "double",
   "double",
@@ -282,6 +282,7 @@ test_that("second statcast fielder_2 column is a duplicate that may be removed",
 #   expect_message(statcast(verbose = TRUE))
 # })
 
+# TODO: deal with requesting a single date with no games
 # TODO: verify spring training games are returned
 # TODO: verify postseason game are returned
 # TODO: verify other game types (exhibition?) are returned

@@ -1,120 +1,19 @@
-#' Download all Statcast data for a particular date
-#'
-#' @param date A date
-#' @param batter Statcast player ID for batter of interest. Defaults to `NULL`.
-#' @param pitcher Statcast player ID for pitcher of interest. Defaults to `NULL`.
-#' @param verbose Controls messaging to the user. Defaults to `FALSE` which
-#' provides no message. When `TRUE`, informs user when each `date` begins
-#' downloading.
-#'
-#' @return A `data.frame` containing all Statcast events on `date`.
-statcast_day = function(date = Sys.Date() - 1,
-                        batter = NULL,
-                        pitcher = NULL,
-                        verbose = FALSE) {
-
-  # TODO: defend against invalid dates?
-
-  if (verbose) {
-    message(paste0("Obtaining data for games on ", date, "."))
-  }
-
-  # setup variables for URL
-  type = ""
-  if (is.null(batter)) {
-    batter = ""
-    if (is.null(pitcher)) {
-      pitcher = ""
-      type = ""
-    } else {
-      type = "&player_type=pitcher"
-      pitcher = paste0("&pitchers_lookup%5B%5D=", pitcher)
-    }
-  } else {
-    batter = paste0("&batters_lookup%5B%5D=", batter)
-    if (is.null(pitcher)) {
-      type = "&player_type=batter"
-    } else {
-      pitcher = paste0("&pitchers_lookup%5B%5D=", pitcher)
-    }
-  }
-
-  # create URL
-  # TODO: does decreasing pasting improve speed?
-  # TODO: consider row orders (see notes below)
-  # TODO: possible to order rows by "time" (probably not possible, create helper function)
-  # TODO: create a "make URL" type function?
-  url = paste0(
-    "https://baseballsavant.mlb.com/statcast_search/csv?all=true",
-    "&hfPT=",
-    "&hfAB=",
-    "&hfBBT=",
-    "&hfPR=",
-    "&hfZ=",
-    "&stadium=", # TODO: can this be used to acquire milb data?
-    "&hfBBL=",
-    "&hfNewZones=",
-    "&hfGT=R%7CPO%7CS%7C&hfC",
-    "hfSit=",
-    "hfOuts=",
-    "opponent=",
-    "pitcher_throws=",
-    "batter_stands=",
-    "hfSA=",
-    type,
-    "&hfInfield=",
-    "&team=",
-    "&position=",
-    "&hfOutfield=",
-    "&hfRO=",
-    "&home_road=",
-    pitcher,
-    batter,
-    "&game_date_gt=", date,
-    "&game_date_lt=", date,
-    "&hfFlag=",
-    "&hfPull=",
-    "&metric_1=",
-    "&hfInn=",
-    "&min_pitches=0",
-    "&min_results=0",
-    "&group_by=name", # TODO: change this? (statcast search gives some hints)
-    "&sort_col=pitches", # TODO: change this?
-    "&player_event_sort=h_launch_speed", # TODO: change this?
-    "&sort_order=desc", # TODO: change this?
-    "&min_abs=0",
-    "&type=details"
-  )
-
-  # download data
-  data = data.table::fread(
-    url,
-    showProgress = FALSE,
-    data.table = FALSE,
-    colClasses = statcast_get_coltypes(),
-    na.strings = ""
-  )
-
-  return(data)
-
-}
-
-#' Download all Statcast data within a range of dates
+#' Download Statcast data within a range of dates
 #'
 #' @param start Start date of search.
-#' @param end End data of search. Defaults to `NULL`, which stops search at`start` date.
+#' @param end End data of search. Defaults to `NULL`, which stops search at `start` date.
 #' @param batter Statcast player ID for batter of interest. Defaults to `NULL`.
 #' @param pitcher Statcast player ID for pitcher of interest. Defaults to `NULL`.
 #' @param process Controls processing of data. Defaults to `FALSE`. If `TRUE`,
 #' data is processed using the `statcast_min_process` function.
 #' @param names Controls processing of names. Defaults to `FALSE`. If `TRUE`,
-#' names are processed using the `statcast_names` function.
+#' names are processed using the `statcast_add_names` function.
 #' @param verbose Controls messaging to the user. Defaults to `FALSE` which
 #' provides no message. When `TRUE`, informs user when each `date` begins
 #' downloading.
 #'
-#' @return An object with class `c("tbl_df", "tbl", "data.frame")` containing
-#' all Statcast events between the `start` date and `end` date inclusive.
+#' @return An object with class `table_class()` containing all Statcast events
+#' between the `start` date and `end` date inclusive.
 #' @export
 statcast = function(start = Sys.Date() - 1,
                     end = NULL,
@@ -124,31 +23,31 @@ statcast = function(start = Sys.Date() - 1,
                     names = FALSE,
                     verbose = FALSE) {
 
-  # TODO: defend against invalid dates?
-
-  # TODO: repeat this code less, but save speedup
-  if (is.null(end) || identical(start, end)) {
-    data = statcast_day(
-      date = start,
-      batter = batter,
-      pitcher = pitcher,
-      verbose = verbose
+  # internal function to retrieve statcast data for single day
+  statcast_day = function(date, batter, pitcher, verbose) {
+    if (verbose) {
+      message(paste0("Obtaining data for games on ", date, "."))
+    }
+    url = statcast_make_url(date = date, batter = batter, pitcher = pitcher)
+    data = data.table::fread(
+      url,
+      showProgress = FALSE,
+      data.table = FALSE,
+      colClasses = statcast_get_colclasses(),
+      na.strings = ""
     )
-    if (process) {
-      data = statcast_min_process(data = data)
-    }
-    if (process && names) {
-      data = statcast_names(data = data)
-    }
-    class(data) = table_class()
     return(data)
   }
 
+  # setup date information
+  if (is.null(end)) {
+    end = start
+  }
   start = as.Date(start)
   end   = as.Date(end)
-
   dates = seq(from = start, to = end, by = "day")
 
+  # retrieve data for supplied dates
   data = lapply(
     dates,
     statcast_day,
@@ -156,34 +55,30 @@ statcast = function(start = Sys.Date() - 1,
     pitcher = pitcher,
     verbose = verbose
   )
-  data = data[vapply(data, nonempty_df, logical(1))]
+
+  # remove days without games then combine all days into one table
+  # data = data[vapply(data, nonempty_df, logical(1))]
   data = data.table::rbindlist(data)
 
+  # apply processing and names
   if (process) {
     data = statcast_min_process(data = data)
   }
-
-  # TODO: why the AND here? is it necessary? if so, throw error, also see above
+  if (!process && names) {
+    warning("Currently, names can only be used for data processed with
+            statcast_min_process(). No names will be added.")
+  }
   if (process && names) {
-    data = statcast_names(data = data)
+    data = statcast_add_names(data = data)
   }
 
+  # add table classes and return data
   class(data) = table_class()
-
   return(data)
 
 }
 
-#' Download all Statcast data within a range of dates in the opinionated `bbd` style
-#'
-#' @param start Start date of search.
-#' @param end End data of search. Defaults to `NULL`, which stops search at`start` date.
-#' @param verbose Controls messaging to the user. Defaults to `FALSE` which
-#' provides no message. When `TRUE`, informs user when each `date` begins
-#' downloading.
-#'
-#' @return An object with class `c("tbl_df", "tbl", "data.frame")` containing
-#' all Statcast events between the `start` date and `end` date inclusive.
+#' @rdname statcast
 #' @export
 statcast_bbd = function(start = Sys.Date() - 1, end = NULL, verbose = FALSE) {
   statcast(

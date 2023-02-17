@@ -89,4 +89,4 @@ statcast_info_proc = data.frame(
 knitr::kable(statcast_info_proc)
 ```
 
-This functionality is also provided by the opinionated `statcast_bbd()` function for convenience. 
+This functionality is also provided by the opinionated `statcast_bbd()` function for convenience. Use `?statcast` for details.

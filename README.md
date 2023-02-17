@@ -48,7 +48,7 @@ duplicated.
 | Variable Name                   | Variable Type |
 |:--------------------------------|:--------------|
 | pitch_type                      | character     |
-| game_date                       | integer       |
+| game_date                       | double        |
 | release_speed                   | double        |
 | release_pos_x                   | double        |
 | release_pos_z                   | double        |
@@ -157,7 +157,7 @@ ws_2022_processed = statcast(
 | Variable Name                   | Variable Type |
 |:--------------------------------|:--------------|
 | pitch_type                      | character     |
-| game_date                       | integer       |
+| game_date                       | double        |
 | release_speed                   | double        |
 | release_pos_x                   | double        |
 | release_pos_z                   | double        |
@@ -250,4 +250,4 @@ ws_2022_processed = statcast(
 | delta_run_exp                   | double        |
 
 This functionality is also provided by the opinionated `statcast_bbd()`
-function for convenience.
+function for convenience. Use `?statcast` for details.
