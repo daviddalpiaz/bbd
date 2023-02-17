@@ -7,7 +7,7 @@
 table_class()
 }
 \value{
-The vector \code{c("tbl_df", "tbl", "data.table", "data.frame")}
+The vector \code{c("tbl_df", "tbl", "data.frame")}
 }
 \description{
 Return vector of table classes
