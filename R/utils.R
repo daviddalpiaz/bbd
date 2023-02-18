@@ -43,7 +43,7 @@ coltypes = function(df) {
 #'
 #' @return The vector `c("tbl_df", "tbl", "data.frame")`
 table_class = function() {
-  c("tbl_df", "tbl", "data.frame")
+  c("tbl_df", "tbl", "data.table", "data.frame")
 }
 
 #' Format character input as a Date
