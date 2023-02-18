@@ -43,8 +43,14 @@ statcast = function(start = Sys.Date() - 1,
   if (is.null(end)) {
     end = start
   }
-  start = as.Date(start)
-  end   = as.Date(end)
+  start = make_date(start)
+  end   = make_date(end)
+  if (is.na(start) | length(start) != 1) {
+    stop("start must be a length one character vector containing a date formatted as YYYY-MM-DD")
+  }
+  if (is.na(end) | length(end) != 1) {
+    stop("end must be a length one character vector containing a date formatted as YYYY-MM-DD")
+  }
   dates = seq(from = start, to = end, by = "day")
 
   # retrieve data for supplied dates

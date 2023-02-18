@@ -45,3 +45,13 @@ coltypes = function(df) {
 table_class = function() {
   c("tbl_df", "tbl", "data.frame")
 }
+
+#' Format character input as a Date
+#'
+#' @param x `[character]` A string of the form `"YYYY-MM-DD"`
+#'
+#' @return A object with class `"Date"`
+make_date = function(x) {
+  x = as.character(x)
+  as.Date(x, format = "%Y-%m-%d")
+}
