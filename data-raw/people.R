@@ -37,5 +37,8 @@ people = data.frame(name = names, data)
 # TODO: create download and lookup functions to help users re-create "full" people data
 people = people[, c("name", "key_mlbam", "key_bbref", "key_fangraphs")]
 
+# add table classes
+class(people) = c("tbl_df", "tbl", "data.table", "data.frame")
+
 # add to package
 usethis::use_data(people, overwrite = TRUE, version = 3)
