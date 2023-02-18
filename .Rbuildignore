@@ -8,3 +8,5 @@
 ^\.github$
 scratch.R
 ^data-raw$
+^doc$
+^Meta$

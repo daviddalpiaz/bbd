@@ -10,6 +10,8 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Suggests: 
     curl,
+    knitr,
+    rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 URL: https://daviddalpiaz.github.io/bbd/, https://github.com/daviddalpiaz/
@@ -20,3 +22,4 @@ Imports:
 Depends: 
     R (>= 3.6.0)
 LazyData: true
+VignetteBuilder: knitr

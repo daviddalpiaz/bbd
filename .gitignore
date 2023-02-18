@@ -44,3 +44,6 @@ docs
 .Rdata
 .DS_Store
 scratch.R
+inst/doc
+/doc/
+/Meta/
