@@ -5,14 +5,14 @@
 #' @param batter Statcast player ID for batter of interest. Defaults to `NULL`.
 #' @param pitcher Statcast player ID for pitcher of interest. Defaults to `NULL`.
 #' @param process Controls processing of data. Defaults to `FALSE`. If `TRUE`,
-#' data is processed using the `statcast_min_process` function.
+#' data is processed using the [statcast_min_process()] function.
 #' @param names Controls processing of names. Defaults to `FALSE`. If `TRUE`,
-#' names are processed using the `statcast_add_names` function.
+#' names are processed using the [statcast_add_names()] function.
 #' @param verbose Controls messaging to the user. Defaults to `FALSE` which
 #' provides no message. When `TRUE`, informs user when each `date` begins
 #' downloading.
 #'
-#' @return An object with class `table_class()` containing all Statcast events
+#' @return An object with class [table_class()] containing all Statcast events
 #' between the `start` date and `end` date inclusive.
 #' @export
 statcast = function(start = Sys.Date() - 1,
