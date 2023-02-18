@@ -3,6 +3,8 @@
 export(bref_war_daily_batter)
 export(bref_war_daily_pitcher)
 export(mlb_roster)
+export(people_chadwick)
+export(people_search)
 export(statcast)
 export(statcast_add_names)
 export(statcast_bbd)
