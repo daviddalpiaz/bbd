@@ -25,6 +25,12 @@ chadwickbureau/register"><!-- mathjax --><script src="https://cdnjs.cloudflare.c
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/getting-started.html">Getting Started</a>
+  </div>
+</li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -59,8 +65,11 @@ various sources. Original data source and documentation:
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A data frame with 101259 rows and 4 columns:</p><dl><dt><code>name</code></dt>
+    <p>A data frame with 101259 rows and 5 columns:</p><dl><dt><code>name</code></dt>
 <dd><p><code>[character]</code> Player's full name listed as: Given Family Suffix</p></dd>
+
+<dt><code>birth_year</code></dt>
+<dd><p><code>[integer]</code> Player's birth year</p></dd>
 
 <dt><code>key_mlbam</code></dt>
 <dd><p><code>[integer]</code> Player's MLB Advanced Media (MLBAM) identifer</p></dd>
