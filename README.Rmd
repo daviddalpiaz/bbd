@@ -13,19 +13,28 @@ knitr::opts_chunk$set(
 )
 ```
 
-# bbd
+# BaseBall Data
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/daviddalpiaz/bbd/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/daviddalpiaz/bbd/actions)
 <!-- badges: end -->
 
-The `bbd` package is a [lightweight package](https://www.tinyverse.org/) that contains functions to facilitate the collection of **b**ase**b**all **d**ata from various sources online. **This package is currently experimental.** All function interfaces are liable to change without notice.
+The **`bbd`** (BaseBall Data) package is a [lightweight package](https://www.tinyverse.org/) that contains functions to facilitate the collection of baseball data from various sources online.
 
-For a mature and feature rich baseball data package, consider [`baseballr`](https://github.com/BillPetti/baseballr).
+**This package is currently experimental.** All function interfaces are liable to change without notice. For a mature and feature rich baseball data package, consider [`baseballr`](https://github.com/BillPetti/baseballr).
+
+Current data sources include:
+
+- [Statcast](https://baseballsavant.mlb.com/)
+- [Baseball-Reference](https://www.baseball-reference.com/)
+- [MLBAM](https://www.mlb.com/)
+- [Chadwick Baseball Bureau Register](https://github.com/chadwickbureau/register)
+
+More sources may be added in the future.
 
 ## Installation
 
-You can install the development version of `bbd` from [GitHub](https://github.com/) with:
+You can install the development version of **`bbd`** from [GitHub](https://github.com/daviddalpiaz/bbd) with:
 
 ``` r
 # install.packages("devtools")
@@ -34,59 +43,11 @@ devtools::install_github("daviddalpiaz/bbd")
 
 ## Example
 
-The most basic usage of `bbd` is collecting [Statcast data](https://baseballsavant.mlb.com/statcast_search) for all games played between two dates, inclusive.
+The most basic and common usage of **`bbd`** is collecting [Statcast data](https://baseballsavant.mlb.com/statcast_search) for all games played between two dates, inclusive.
 
 ```{r ws-example, eval = FALSE}
 library(bbd)
 ws_2022 = statcast(start = "2022-10-28", end = "2022-11-05")
 ```
 
-```{r sc-example, echo = FALSE}
-library(bbd)
-sc = statcast(start = "2022-10-28", end = "2022-10-28")
-statcast_info = data.frame(
-  "Variable Name" = names(sc),
-  "Variable Type" = sapply(sc, typeof),
-  check.names = FALSE
-)
-```
-
-### Statcast Variables
-
-By default, `bbd` attempts to be un-opinionated, and thus returns a data frame containing the exact variables (to the extent possible) returned by the Statcast API. Notice that `pitcher` and `fielder_2` variables are duplicated.
-
-```{r sc-info-table, echo = FALSE}
-knitr::kable(statcast_info)
-```
-
-The `statcast()` function provides arguments that allow for some opinionated processing. Check the documentation for details of this processing. Most importantly, functionality to obtain both batter *and* pitcher names is included.
-
-```{r, eval = FALSE}
-ws_2022_processed = statcast(
-  start = "2022-10-28",
-  end = "2022-11-05",
-  process = TRUE,
-  names = TRUE
-)
-```
-
-```{r sc-example-proc, echo = FALSE}
-library(bbd)
-sc_proc = statcast(
-  start = "2022-10-28",
-  end = "2022-11-05",
-  process = TRUE,
-  names = TRUE
-)
-statcast_info_proc = data.frame(
-  "Variable Name" = names(sc),
-  "Variable Type" = sapply(sc, typeof),
-  check.names = FALSE
-)
-```
-
-```{r sc-info-table-proc, echo = FALSE}
-knitr::kable(statcast_info_proc)
-```
-
-This functionality is also provided by the opinionated `statcast_bbd()` function for convenience. Use `?statcast` for details.
+By default, `bbd` package attempts to be un-opinionated, and thus returns a table containing the exact variables (to the extent possible) returned by the Statcast API. The `statcast()` function provides arguments that allow for some opinionated processing. Check the documentation for details of this processing. Most importantly, functionality to obtain both batter *and* pitcher names is included. This functionality is also provided by default through the use of the opinionated `statcast_bbd()` function for convenience.
