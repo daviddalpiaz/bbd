@@ -34,9 +34,6 @@ statcast_min_process = function(data) {
   # removes dupes and na_vars
   data = data[, -c(dupes, na_vars)]
 
-  # attach tibble and data frames classes
-  # class(data) = table_class()
-
   # return data
   return(data)
 
@@ -179,8 +176,6 @@ statcast_add_names = function(data) {
   )
 
   data = data[, col_order]
-
-  # class(data) = table_class()
 
   return(data)
 
