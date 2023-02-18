@@ -35,7 +35,7 @@ people = data.frame(name = names, data)
 
 # subset to name and keys currently used in package
 # TODO: create download and lookup functions to help users re-create "full" people data
-people = people[, c("name", "key_mlbam", "key_bbref", "key_fangraphs")]
+people = people[, c("name", "birth_year", "key_mlbam", "key_bbref", "key_fangraphs")]
 
 # add table classes
 class(people) = c("tbl_df", "tbl", "data.table", "data.frame")
