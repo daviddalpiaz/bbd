@@ -1,21 +1,17 @@
+# create URLs for relevant files in chadwickbureau/register
+chadwick_urls = paste0(
+  "https://raw.githubusercontent.com/chadwickbureau/register/master/data/people-",
+  c(0:9, letters[1:6]),
+  ".csv"
+)
+
 # download individual people datasets from chadwickbureau/register
-data = list(
-  p0 = data.table::fread("https://raw.githubusercontent.com/chadwickbureau/register/master/data/people-0.csv", data.table = FALSE, verbose = FALSE, showProgress = FALSE),
-  p1 = data.table::fread("https://raw.githubusercontent.com/chadwickbureau/register/master/data/people-1.csv", data.table = FALSE, verbose = FALSE, showProgress = FALSE),
-  p2 = data.table::fread("https://raw.githubusercontent.com/chadwickbureau/register/master/data/people-2.csv", data.table = FALSE, verbose = FALSE, showProgress = FALSE),
-  p3 = data.table::fread("https://raw.githubusercontent.com/chadwickbureau/register/master/data/people-3.csv", data.table = FALSE, verbose = FALSE, showProgress = FALSE),
-  p4 = data.table::fread("https://raw.githubusercontent.com/chadwickbureau/register/master/data/people-4.csv", data.table = FALSE, verbose = FALSE, showProgress = FALSE),
-  p5 = data.table::fread("https://raw.githubusercontent.com/chadwickbureau/register/master/data/people-5.csv", data.table = FALSE, verbose = FALSE, showProgress = FALSE),
-  p6 = data.table::fread("https://raw.githubusercontent.com/chadwickbureau/register/master/data/people-6.csv", data.table = FALSE, verbose = FALSE, showProgress = FALSE),
-  p7 = data.table::fread("https://raw.githubusercontent.com/chadwickbureau/register/master/data/people-7.csv", data.table = FALSE, verbose = FALSE, showProgress = FALSE),
-  p8 = data.table::fread("https://raw.githubusercontent.com/chadwickbureau/register/master/data/people-8.csv", data.table = FALSE, verbose = FALSE, showProgress = FALSE),
-  p9 = data.table::fread("https://raw.githubusercontent.com/chadwickbureau/register/master/data/people-9.csv", data.table = FALSE, verbose = FALSE, showProgress = FALSE),
-  pa = data.table::fread("https://raw.githubusercontent.com/chadwickbureau/register/master/data/people-a.csv", data.table = FALSE, verbose = FALSE, showProgress = FALSE),
-  pb = data.table::fread("https://raw.githubusercontent.com/chadwickbureau/register/master/data/people-b.csv", data.table = FALSE, verbose = FALSE, showProgress = FALSE),
-  pc = data.table::fread("https://raw.githubusercontent.com/chadwickbureau/register/master/data/people-c.csv", data.table = FALSE, verbose = FALSE, showProgress = FALSE),
-  pd = data.table::fread("https://raw.githubusercontent.com/chadwickbureau/register/master/data/people-d.csv", data.table = FALSE, verbose = FALSE, showProgress = FALSE),
-  pe = data.table::fread("https://raw.githubusercontent.com/chadwickbureau/register/master/data/people-e.csv", data.table = FALSE, verbose = FALSE, showProgress = FALSE),
-  pf = data.table::fread("https://raw.githubusercontent.com/chadwickbureau/register/master/data/people-f.csv", data.table = FALSE, verbose = FALSE, showProgress = FALSE)
+data = lapply(
+  chadwick_urls,
+  data.table::fread,
+  data.table = FALSE,
+  verbose = FALSE,
+  showProgress = FALSE
 )
 
 # combine people datasets
