@@ -12,6 +12,7 @@ statcast_min_process = function(data) {
   }
 
   # find duplicated columns (statcast returns duplicated column names)
+  # choose which to remove based on where they appear in the data
   dupes = c(
     which(names(data) == "pitcher")[2],
     which(names(data) == "fielder_2")[1]
@@ -211,10 +212,8 @@ statcast_make_url = function(date, batter, pitcher) {
   }
 
   # create URL
-  # TODO: does decreasing pasting improve speed?
   # TODO: consider row orders (see notes below)
-  # TODO: possible to order rows by "time" (probably not possible, create helper function)
-  # TODO: create a "make URL" type function?
+  # TODO: possible to order rows by "time" (probably not possible, create helper function?)
   url = paste0(
     "https://baseballsavant.mlb.com/statcast_search/csv?all=true",
     "&hfPT=",
