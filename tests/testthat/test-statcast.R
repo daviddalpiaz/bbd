@@ -277,7 +277,7 @@ test_that("second statcast fielder_2 column is a duplicate that may be removed",
 
 # TODOs -------------------------------------------------------------------
 
-# test_that("verbose arguement produces a message", {
+# test_that("verbose argument produces a message", {
 #   expect_message(statcast_day(verbose = TRUE))
 #   expect_message(statcast(verbose = TRUE))
 # })
