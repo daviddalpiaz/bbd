@@ -3,7 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   getting-started: getting-started.html
-last_built: 2023-02-18T20:54Z
+last_built: 2023-02-22T20:23Z
 urls:
   reference: https://daviddalpiaz.github.io/bbd/reference
   article: https://daviddalpiaz.github.io/bbd/articles
