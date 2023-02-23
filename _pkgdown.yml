@@ -4,3 +4,24 @@ template:
 authors:
   David Dalpiaz:
     href: https://daviddalpiaz.org
+reference:
+- title: Statcast
+  contents:
+  - starts_with('statcast')
+- title: Baseball-Reference
+  contents:
+  - starts_with('bref')
+- title: MLB Advanced Media
+  contents:
+  - starts_with('mlb')
+- title: People Information
+  contents:
+  - starts_with('people')
+- title: Utilities
+  contents:
+  - all_na
+  - coltypes
+  - make_date
+  - nonempty_df
+  - table_class
+  - two_cols_identical
