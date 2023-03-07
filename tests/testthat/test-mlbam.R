@@ -19,3 +19,7 @@ test_that("mlb_roster returns a data frame", {
 test_that("mlb_roster returns a data frame with 40 rows", {
   expect_equal(nrow(mets_currest_roster), 40)
 })
+
+test_that("mlb_roster returns a data frame with 11 columns", {
+  expect_equal(ncol(mets_currest_roster), 11)
+})
