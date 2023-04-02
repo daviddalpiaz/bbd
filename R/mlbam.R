@@ -22,12 +22,17 @@ mlb_roster = function(team) {
 
   # create MLB statsapi URL
   # TODO: make lookup table or function
-  url = paste("https://statsapi.mlb.com/api/v1/teams/", team, "/roster/", sep = "")
+  url = paste("https://statsapi.mlb.com/api/v1/teams/", team, "/roster/40Man", sep = "")
 
   # acquire JSON, extract roster, flatten, add nicer names
   # TODO: consider column types and NA or "" values
   data = jsonlite::fromJSON(url)$roster
   data = jsonlite::flatten(data)
+  if (ncol(data) == 12) {
+    # TODO: instead of removing, add to all rosters, even if no notes exist?
+    # TODO: what could/should notes be used for?
+    data$note = NULL
+  }
   names(data) = c(
     "JerseyNumber",
     "TeamID",

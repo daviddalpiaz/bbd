@@ -14,7 +14,7 @@ statcast_make_url(date, batter, pitcher)
 \item{pitcher}{Statcast player ID for pitcher of interest. Defaults to \code{NULL}.}
 }
 \value{
-A length one chracter vector contain a Statcast URL
+A length one character vector contain a Statcast URL
 }
 \description{
 Make Statcast URL

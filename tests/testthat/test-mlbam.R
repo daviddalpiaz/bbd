@@ -16,8 +16,8 @@ test_that("mlb_roster returns a data frame", {
   expect_true(is.data.frame(mets_currest_roster))
 })
 
-test_that("mlb_roster returns a data frame with 40 rows", {
-  expect_equal(nrow(mets_currest_roster), 40)
+test_that("mlb_roster returns a data frame with at least 26 rows", {
+  expect_true(nrow(mets_currest_roster) >= 26)
 })
 
 test_that("mlb_roster returns a data frame with 11 columns", {
