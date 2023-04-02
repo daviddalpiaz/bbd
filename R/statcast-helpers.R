@@ -48,6 +48,8 @@ statcast_min_process = function(data) {
 #' @export
 statcast_add_names = function(data) {
 
+  # TODO: remove player_name since batter and pitcher name are return?
+
   # TODO: is this still needed?
   remove = c(
     "name",
@@ -60,10 +62,9 @@ statcast_add_names = function(data) {
     "key_npb"
   )
 
-  names = bbd::people
+  names = as.data.frame(bbd::people)
 
   # add batter name
-  # TODO: switch to data.table::merge if there is a speedup
   data = merge(
     x = data,
     y = names,
@@ -76,7 +77,6 @@ statcast_add_names = function(data) {
   data[, remove] = NULL
 
   # add pitcher name
-  # TODO: switch to data.table::merge if there is a speedup
   data = merge(
     x = data,
     y = names,
@@ -188,7 +188,7 @@ statcast_add_names = function(data) {
 #' @param batter Statcast player ID for batter of interest. Defaults to `NULL`.
 #' @param pitcher Statcast player ID for pitcher of interest. Defaults to `NULL`.
 #'
-#' @return A length one chracter vector contain a Statcast URL
+#' @return A length one character vector contain a Statcast URL
 statcast_make_url = function(date, batter, pitcher) {
 
   # setup variables for URL
