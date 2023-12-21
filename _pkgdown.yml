@@ -1,7 +1,8 @@
 url: https://daviddalpiaz.github.io/bbd/
 template:
   bootstrap: 5
-  bootswatch: bootstrap
+  bslib:
+    preset: bootstrap
 authors:
   David Dalpiaz:
     href: https://daviddalpiaz.org
