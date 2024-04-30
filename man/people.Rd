@@ -5,7 +5,7 @@
 \alias{people}
 \title{People Information from the Chadwick Baseball Bureau Register}
 \format{
-A data frame with 101259 rows and 5 columns:
+A data frame with 111387 rows and 5 columns:
 \describe{
 \item{\code{name}}{\verb{[character]} Player's full name listed as: Given Family Suffix}
 \item{\code{birth_year}}{\verb{[integer]} Player's birth year}
